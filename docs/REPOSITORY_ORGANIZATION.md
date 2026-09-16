@@ -1,6 +1,6 @@
 # Current candidate and history
 
-Use the submission-files-2026-09-16 release for the current manuscript, author page, source and supplement. The release contains the current submission files; it is not an accepted journal article.
+Use the submission-files-2026-09-17 release for the current manuscript, author page, source and supplement. The release contains the current submission files; it is not an accepted journal article.
 
 The repository remains public, matching the manuscript code-availability statement and public HHAR protocol timestamp. Private access would require a different reviewer-access arrangement and revised manuscript links.
 

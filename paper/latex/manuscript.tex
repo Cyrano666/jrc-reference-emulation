@@ -83,11 +83,11 @@ Finite-population sampling and hypergeometric inversion are standard statistical
 \section{Finite-pool reference emulation}
 \label{sec:method}
 
-Figure~\ref{fig:1} shows the frozen-model and query workflow. Algorithm~\ref{alg:jrc} specifies the acquisition procedure.
+Figure~\ref{fig:1} shows the frozen-model and query workflow. The running extrema use the visited checkpoints, and both sums range over the monitoring batch. The checkpoint set in panel (b) denotes $\mathcal T$, whereas $T$ is the stopping query count. Algorithm~\ref{alg:jrc} specifies the acquisition procedure.
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig1.pdf}}
-\caption{Joint rank calibration workflow. Panel (a) defines the frozen classifier and available inputs; panel (b) constructs the rank boundaries before querying; panel (c) acquires labels and applies prediction-set stopping. Running maxima and minima use the visited checkpoints, and both sums range over the declared monitoring batch. The checkpoint set in panel (b) is $\mathcal T$; $T$ denotes the stopping query count}\label{fig:1}
+\caption{JRC workflow: (a) frozen classifier and inputs; (b) offline rank-boundary calibration; (c) sequential label acquisition and prediction-set stopping}\label{fig:1}
 \end{figure*}
 
 \subsection{Target, information and cost}
@@ -287,7 +287,7 @@ Five declared seeds and three user-disjoint test folds used four training, two c
 
 \section{Results}
 \subsection{Label savings against sequential quantile baselines}
-Table~\ref{tab:primary} reports absolute reference utility and label savings for the three interval methods. Figure~\ref{fig:2} adds the secondary APS score. All engines use the same confidence error, tolerance, pool and query order. This common setting isolates the acquisition efficiency of their quantile bounds.
+Table~\ref{tab:primary} reports absolute reference utility and label savings for the three interval methods. Figure~\ref{fig:2} adds the secondary APS score. All engines use the same confidence error, tolerance, pool and query order. This common setting isolates the acquisition efficiency of their quantile bounds. Figure~\ref{fig:2} averages the declared pool ceilings and participant summaries; paired uncertainty is reported in Section~\ref{sec:paired}.
 
 \begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
@@ -310,7 +310,7 @@ USC-HAD & 90.36 & 2.590 & 23.67 & 17.91 & 11.74 & 0.179 \\
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig2.pdf}}
-\caption{Main-study reference-label savings: (a) LAC; (b) APS, at confidence error 0.05 and tolerance 0.5. Within each dataset, bars are ordered JRC, Bonferroni HG and the primary uniform-prior confidence sequence from left to right. Both panels use the same zero-based scale. Values average the declared pool ceilings and participant summaries; paired uncertainty is reported in Section~\ref{sec:paired}}\label{fig:2}
+\caption{Reference-label savings at $\delta=0.05$ and $\tau=0.5$: (a) LAC; (b) APS. Bars show JRC, Bonferroni HG and the uniform-prior CS from left to right}\label{fig:2}
 \end{figure*}
 On USC-HAD, the joint engine saves 23.67\% of reference labels, compared with 17.91\% for HG and 11.74\% for the uniform-prior CS. Its mean coverage is 91.80\%, against 90.36\% for the reference, and mean set size changes from 2.590 to 2.769. The coverage increase comes from the more inclusive calibration threshold; the point classifiers are unchanged.
 
@@ -342,7 +342,7 @@ No time correction & 33.71 & 91.73 & 2.766 & 0.1784 & 6.29 & 3.02 \\
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig3.pdf}}
-\caption{USC-HAD LAC failure diagnostics: (a) output threshold below the full-reference threshold; (b) monitoring-batch inflation above 0.5 labels. The dashed line is $\delta=5\%$. The first three bars are the interval methods; gray bars are diagnostic rules without the same guarantee. The labels 25\%, 50\% and 75\% denote fractions of reference labels queried; Mid is midpoint output and Uncorr. is uncorrected repeated looks. Numerical values are reported in Table~\ref{tab:confirm}}\label{fig:3}
+\caption{USC-HAD LAC failures: (a) threshold failure; (b) monitoring-batch inflation above 0.5 labels. Dashed line: $\delta=5\%$. Gray bars denote diagnostic rules; percentages denote query fractions. Mid: midpoint output; Uncorr.: uncorrected repeated looks}\label{fig:3}
 \end{figure*}
 The proposed confirmation threshold-failure rate is 2.04\%, and its batch size-failure rate is 0.72\%. The confidence statement applies to one query campaign. A failure of the scalar threshold bracket may not remove any label on the finite observed input batch if no candidate score lies in the gap.
 
@@ -352,7 +352,7 @@ Figure~\ref{fig:4} reports paired participant bootstrap intervals for additional
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig4.pdf}}
-\caption{Additional LAC label savings of JRC relative to (a) Bonferroni hypergeometric brackets and (b) the primary uniform-prior confidence sequence. Points are paired participant means; bars are 95\% bootstrap intervals conditional on the fitted models and partitions}\label{fig:4}
+\caption{Additional LAC label savings of JRC over (a) Bonferroni HG and (b) the uniform-prior CS. Points show paired participant means; bars show 95\% bootstrap intervals}\label{fig:4}
 \end{figure*}
 
 \begin{table*}[tp]
@@ -370,11 +370,11 @@ IT & 65.14 & 60.32 & 14.85 & 89.83 & 2.967 \\
 \begin{minipage}{\textwidth}\footnotesize Each classifier has 35 main outer partitions. IT denotes a single InceptionTime-style network. Macro-F1 includes all 12 classes, with zero contribution for undefined class scores according to the supplied implementation.\end{minipage}
 \end{table*}
 \subsection{Tolerance, query checkpoints and mechanism ablations}
-Figure~\ref{fig:5} reports all four declared tolerances. Relaxing the allowed average number of additional labels permits earlier stopping, as expected from Eq.~\eqref{eq:width}. The tolerance controls the permitted added ambiguity and the resulting cost-utility trade-off. The primary tolerance remains 0.5 on confirmation; it was not selected by maximizing the confirmation savings.
+Figure~\ref{fig:5} reports mean savings at all four tolerances declared before the USC-HAD results. Paired uncertainty at the primary tolerance is shown in Fig.~\ref{fig:4}. Relaxing the allowed average number of additional labels permits earlier stopping, as expected from Eq.~\eqref{eq:width}. The tolerance controls the permitted added ambiguity and the resulting cost-utility trade-off. The primary tolerance remains 0.5 on confirmation; it was not selected by maximizing the confirmation savings.
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig5.pdf}}
-\caption{Tolerance-savings curves for JRC: (a) LAC; (b) APS. Distinct markers and line styles identify the datasets. All four tolerances were declared before USC-HAD results. Values are means; primary-tolerance paired uncertainty is reported in Fig.~\ref{fig:4}}\label{fig:5}
+\caption{Mean label savings of JRC versus the allowed extra set size: (a) LAC; (b) APS. Markers and line styles identify datasets}\label{fig:5}
 \end{figure*}
 Table~\ref{tab:ablate} separates the mechanism choices. Removing running intersections reduces confirmation savings from 23.67\% to 21.10\%; sparse checkpoints reduce them to 16.84\%. Returning the midpoint retains the same label count but raises threshold failure to 46.40\%, illustrating why the protected upper endpoint is essential. Omitting repeated-look correction increases savings to 33.71\% and threshold failure to 6.29\%, above the declared 5\% error level.
 
@@ -394,13 +394,13 @@ No time correction & 33.71 & 0.175 & 6.29 & 3.02 \\
 \end{tabular}
 \begin{minipage}{\textwidth}\footnotesize Saved (\%) = $100(1-T/N)$: window labels saved relative to the full reference pool of $N$ labels, excluding training, segmentation and setup costs. Only the first three rows retain the declared guarantee with their respective boundaries and checkpoints. The midpoint has the same stopping labels as the joint engine but a different output rule. The uncorrected rule reuses fixed-time intervals at multiple looks.\end{minipage}
 \end{table*}
-Figure~\ref{fig:6} traces the first declared USC-HAD MR query campaign at a 480-window pool. This case is selected by its fixed index, not by searching for the largest gain. The census collapses all valid constructions to the same full-reference quantile. Before that point, the mapping from rank uncertainty to set membership determines when each engine meets the tolerance.
+Figure~\ref{fig:6} traces the first declared USC-HAD MR query campaign at a 480-window pool. This case is selected by its fixed index, not by searching for the largest gain. The census collapses all valid constructions to the same full-reference quantile, approximately 0.999436 in this example. The $10^{-16}$ floor in panel (a) is a plotting convention only. Before that point, the mapping from rank uncertainty to set membership determines when each engine meets the tolerance.
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig6.pdf}}
-\caption{First declared USC-HAD MR query run, LAC, 480 reference windows: (a) running upper quantile endpoints represented as the corresponding probability cutoff $1-\overline U_t$ on a logarithmic axis; (b) endpoint set-size difference with stopping locations marked. The reference quantile is approximately 0.999436. Zero cutoffs and infinite upper bounds are displayed at $10^{-16}$ in (a); this is only a display convention. The horizontal line in (b) is the 0.5-label tolerance}\label{fig:6}
+\caption{USC-HAD MR query trace for LAC, $N=480$: (a) probability cutoff $1-\overline U_t$ on a logarithmic scale; (b) endpoint set-size difference, with stopping locations marked. Zero cutoffs and infinite upper bounds are plotted at $10^{-16}$. Horizontal line: $\tau=0.5$}\label{fig:6}
 \end{figure*}
-Figure~\ref{fig:7} relates label savings to absolute reference set size and shows the corresponding reference and returned-set coverage pairs.
+Figure~\ref{fig:7} relates label savings to absolute reference set size and shows the corresponding reference and returned-set coverage pairs. Each dataset contributes LR, MR and IT points; their identities and values are provided in the model-summary table of Online Resource~1.
 
 
 
@@ -419,7 +419,7 @@ Boundary tables depend only on the finite design and can be reused. Table~\ref{t
 
 \begin{figure*}[p]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig7.pdf}}
-\caption{Reference utility and acquisition behavior for LAC: (a) label savings versus full-reference set size; (b) returned-set versus reference coverage. Each point represents one dataset-classifier mean; dataset identity is encoded by both marker shape and color. Each dataset contributes LR, MR and IT points, whose identities and values are supplied in the model-summary table of Online Resource 1. The diagonal indicates equal coverage}\label{fig:7}
+\caption{Reference utility for LAC: (a) label savings versus reference set size; (b) returned-set versus reference coverage. Each point is a dataset-classifier mean; color and shape identify datasets. The diagonal denotes equal coverage}\label{fig:7}
 
 \par\vspace{14pt}
 \begin{minipage}{0.9\textwidth}
@@ -457,13 +457,6 @@ Pool size & Build table (ms) & Cached query loop (ms) & Exact crossing probabili
 \par\vspace{4pt}\raggedright\footnotesize Five repeated timings per size on the stated CPU. All confidence errors are 0.05. Boundary construction is a one-time cost for each distinct pool and checkpoint design; query execution includes sorting monitoring scores and observed prefixes.\par
 \end{minipage}
 \end{figure*}
-\subsection{Additional HHAR confirmation}
-Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
-
-The full-reference coverage and mean set size are 88.10\% and 1.807, compared with 90.84\% and 1.997 for JRC. Table~\ref{tab:hhar} also reports threshold and monitoring-batch inflation failures. Secondary pool-size, APS and classifier results are in Online Resource~1.
-
-
-
 \clearpage\onecolumn\twocolumn[{
 \begin{minipage}{\textwidth}\centering
 \begin{minipage}{0.65\textwidth}
@@ -486,6 +479,13 @@ CS$(1,1)$ & 20.64 & 0.06 & 0.00 \\
 \par\vspace{16pt}\end{minipage}
 
 }]
+\subsection{Additional HHAR confirmation}
+Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
+
+The full-reference coverage and mean set size are 88.10\% and 1.807, compared with 90.84\% and 1.997 for JRC. Table~\ref{tab:hhar} also reports threshold and monitoring-batch inflation failures. Secondary pool-size, APS and classifier results are in Online Resource~1.
+
+
+
 \section{Discussion and limitations}
 JRC improves label efficiency by calibrating the joint rank path across checkpoints. The benefit is greatest when the reference quantile can be localized while adding few candidate labels. The main experiments and the separately specified HHAR confirmation support this mechanism. Stronger confidence-sequence priors recover part of the gap to the uniform-prior baseline, while JRC retains an advantage in the reported dataset averages.
 
@@ -498,6 +498,7 @@ Joint rank calibration reduces the labels required to preserve a fixed calibrati
 
 
 \backmatter
+\par\noindent\begin{minipage}{\columnwidth}
 \par\addvspace{10pt}\noindent\begin{minipage}{\columnwidth}
 \section*{Data availability}
 The eight public datasets analyzed in this study are available from their original sources \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Frozen classifier predictions, evaluation tables and protocol records supporting the reported results are provided in Online Resource~1.
@@ -513,6 +514,7 @@ The acquisition algorithms, analysis code and reproduction instructions are avai
 Online Resource~1: reproduction code, frozen predictions, evaluation tables, protocol records, verification results and editable figure sources.
 \end{minipage}\par
 
+\end{minipage}\par
 \begin{thebibliography}{99}\fontsize{9}{11}\selectfont\setlength{\itemsep}{2pt}
 \bibitem{guo}\begin{minipage}[t]{\linewidth}Guo C, Pleiss G, Sun Y, Weinberger KQ (2017) On calibration of modern neural networks. Proceedings of Machine Learning Research 70:1321-1330. \url{https://proceedings.mlr.press/v70/guo17a.html}\end{minipage}
 

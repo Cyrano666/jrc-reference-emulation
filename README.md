@@ -4,7 +4,7 @@
 
 Research code and reproducibility materials accompanying an unpublished manuscript targeting Pattern Analysis and Applications.
 
-[Manuscript](paper/manuscript.pdf) · [Editable architecture](figures/Fig1_editable.pptx) · [Reproduction guide](docs/REPRODUCTION.md) · [Method and scope](docs/METHOD.md) · [Data and rights](docs/DATA.md)
+[Manuscript](paper/manuscript.pdf) · [Title page and declarations](paper/Title_Page_and_Declarations.docx) · [Editable architecture](figures/Fig1_editable.pptx) · [Reproduction guide](docs/REPRODUCTION.md) · [Method and scope](docs/METHOD.md) · [Data and rights](docs/DATA.md)
 
 ![Architecture](figures/architecture_preview.png)
 

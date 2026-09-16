@@ -1,9 +1,9 @@
-# Pattern Analysis and Applications: LaTeX source
+# Pattern Analysis and Applications LaTeX source
 
-The journal accepts LaTeX for manuscripts with mathematical content and recommends the Springer Nature template. This package uses the official unmodified sn-jnl.cls with the sn-basic numbered-reference option. The bibliography is self-contained in manuscript.tex. The PDF preview is supplied separately.
+Compile manuscript.tex with pdfLaTeX three times. The official Springer Nature sn-jnl.cls and sn-basic.bst are supplied unchanged. Figures use local filenames and the bibliography is self-contained.
 
-Compile manuscript.tex with pdfLaTeX three times. Required standard TeX packages include lmodern, algorithm, algpseudocode, graphicx, amsmath, amssymb, booktabs, multirow, placeins and xurl. All seven figure PDFs and the official class/style are included.
+Authors: Xin Feng (first author) and Decong Yang (corresponding author), Xinjiang University, Urumqi, China. Correspondence: 20232501525@stu.xju.edu.cn.
 
-Author-review status: the complete author order, two additional authors, corresponding-author details and final submission declarations remain pending. The incomplete byline is intentionally omitted, not a claim that PAA requires an anonymous manuscript. Complete that information before journal submission.
+The editable title page and declarations are supplied separately as Word. Both authors must review and approve the final submission. This is a review version, not an accepted article.
 
-Official instructions: https://link.springer.com/journal/10044/submission-guidelines
+Instructions: https://link.springer.com/journal/10044/submission-guidelines

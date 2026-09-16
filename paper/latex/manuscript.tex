@@ -219,7 +219,7 @@ The second quantile-interval baseline inverts the prior-posterior ratio confiden
  \frac{(a)_j\,(N-a)_{t-j}}{(N)_t},
  \label{eq:likelihood}
 \end{equation}
-where $(a)_j$ denotes a falling factorial. Invert the resulting e-process separately at counts $k$ and $k-1$, allotting each error $\delta/2$. The minimum accepted count at $k$ gives the lower sample rank; one plus the maximum accepted count at $k-1$ gives the upper rank. We use the same running intersection, checkpoints and prediction-set stopping tolerance as the proposed engine. 
+where $(a)_j$ denotes a falling factorial. Invert the resulting e-process separately at counts $k$ and $k-1$, allotting each error $\delta/2$. The minimum accepted count at $k$ gives the lower sample rank; one plus the maximum accepted count at $k-1$ gives the upper rank. We use the same running intersection, checkpoints and prediction-set stopping tolerance as the proposed engine.
 
 We additionally compare ordinary conformal quantiles from fixed 25\%, 50\% and 75\% prefixes, and an upper hypergeometric bound at a single fixed 50\% look. The former have no reference-containment guarantee. The latter protects the reference at that fixed look but does not adapt label expenditure to a prescribed set-size tolerance. Diagnostic ablations omit time correction, omit running intersection, return a midpoint at the proposed stopping time, or use sparse checkpoints. Their different guarantees are kept explicit.
 \section{Experimental design}
@@ -457,15 +457,9 @@ Pool size & Build table (ms) & Cached query loop (ms) & Exact crossing probabili
 \begin{minipage}{\textwidth}\footnotesize Five repeated timings per size on the stated CPU. All confidence errors are 0.05. Boundary construction is a one-time cost for each distinct pool and checkpoint design; query execution includes sorting monitoring scores and observed prefixes.\end{minipage}
 \end{minipage}
 \par\vspace{16pt}\end{minipage}
-\end{table*}
-\subsection{Additional HHAR confirmation}
-Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
-
-The full reference has mean coverage 88.10\% and mean set size 1.807; JRC returns 90.84\% coverage and mean set size 1.997. Threshold and monitoring-batch inflation failures are reported alongside savings. Secondary pool-size, APS and classifier-specific results are retained in Online Resource~1. This additional cohort supports the acquisition gain on a separately collected dataset under the fixed continuity rules.
-
-\begin{table}[t]
+\par\vspace{12pt}\begin{minipage}{\textwidth}
 \centering\small\setlength{\tabcolsep}{2pt}
-\caption{Additional HHAR primary confirmation, $N=240$}\label{tab:hhar}
+\reviewtablecaption{Additional HHAR primary confirmation, $N=240$}\label{tab:hhar}
 \begin{tabular}{lrrr}
 \toprule
 Policy & Saved (\%) & Threshold & Inflation \\
@@ -479,7 +473,14 @@ CS$(1,1)$ & 20.64 & 0.06 & 0.00 \\
 \botrule
 \end{tabular}
 \par\vspace{3pt}\raggedright\footnotesize Saved (\%) = $100(1-T/N)$ relative to the complete reference pool, excluding training, segmentation and setup costs. CS$(a,b)$ uses a Beta$(a,b)$ prior; CS$(1,1)$ is uniform. Failure rates count query campaigns once.\par
-\end{table}
+\end{minipage}
+\end{table*}
+\subsection{Additional HHAR confirmation}
+Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
+
+The full reference has mean coverage 88.10\% and mean set size 1.807; JRC returns 90.84\% coverage and mean set size 1.997. Threshold and monitoring-batch inflation failures are reported alongside savings. Secondary pool-size, APS and classifier-specific results are retained in Online Resource~1. This additional cohort supports the acquisition gain on a separately collected dataset under the fixed continuity rules.
+
+
 
 \section{Discussion and limitations}
 JRC improves label efficiency by calibrating the joint rank path across checkpoints. The benefit is greatest when the reference quantile can be localized while adding few candidate labels. The main experiments and the separately specified HHAR confirmation support this mechanism. Stronger confidence-sequence priors recover part of the gap to the uniform-prior baseline, while JRC retains an advantage in the reported dataset averages.
@@ -492,13 +493,16 @@ The evaluation combines six development datasets with the main USC-HAD confirmat
 Joint rank calibration reduces the labels required to preserve a fixed calibration reference. Its coupled recursion controls quantile-boundary crossings across the declared checkpoints, and its stopping rule measures the resulting prediction-set ambiguity on unlabeled inputs. The main evaluation and the additional HHAR confirmation show useful savings over the tested interval comparators. The results also identify low-saving cases and the importance of reference quality, providing a concrete basis for choosing when to apply the method.
 
 
+\clearpage\onecolumn\twocolumn
 \backmatter
-\section*{Data and supporting materials}
-\subsection*{Data availability}
-The original datasets are available from the sources cited in this article. Code and documentation are available at \url{https://github.com/Cyrano666/jrc-reference-emulation}. Online Resource 1 provides frozen classifier probabilities, result tables, protocol locks and verification records. Raw USC-HAD recordings are obtained from their original provider. The archive index maps the manuscript figures and tables to their source files and distinguishes the locked main experiment from subsequent diagnostics. Boundary-table construction and the joint recursion are implemented in \texttt{revision6/horizon.py}. From the repository root, \texttt{python get\_artifacts.py} retrieves the verified numerical artifacts and \texttt{python reproduce.py --smoke} checks one complete acquisition case; omitting \texttt{--smoke} replays all main cases. The separate HHAR replay is \texttt{python confirmation\_hhar/reproduce.py --smoke}.
-\subsection*{Supplementary material}
-Online Resource 1: reproduction code, frozen predictions and evaluation tables, protocol and verification records, the stronger-prior diagnostic, and figure sources. The archive index maps each figure and table to its source files.
+\section*{Data availability}
+The eight public datasets analyzed in this study are available from their original sources \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Frozen classifier predictions, evaluation tables and protocol records supporting the reported results are provided in Online Resource~1.
 
+\section*{Code availability}
+The acquisition algorithms, analysis code and reproduction instructions are available at \url{https://github.com/Cyrano666/jrc-reference-emulation}. Online Resource~1 contains the accompanying code snapshot.
+
+\section*{Supplementary information}
+Online Resource~1: reproduction code, frozen predictions, evaluation tables, protocol records, verification results and editable figure sources.
 
 \begin{thebibliography}{99}\fontsize{9}{11}\selectfont\setlength{\itemsep}{2pt}
 \bibitem{guo}\begin{minipage}[t]{\linewidth}Guo C, Pleiss G, Sun Y, Weinberger KQ (2017) On calibration of modern neural networks. Proceedings of Machine Learning Research 70:1321-1330. \url{https://proceedings.mlr.press/v70/guo17a.html}\end{minipage}
@@ -569,5 +573,7 @@ Online Resource 1: reproduction code, frozen predictions and evaluation tables, 
 
 \bibitem{hhar}\begin{minipage}[t]{\linewidth}Blunck H, Bhattacharya S, Prentow T, Kjaergaard M, Dey A (2015) Heterogeneity activity recognition. UCI Machine Learning Repository. Dataset. CC BY 4.0. \url{https://doi.org/10.24432/C5689X}\end{minipage}
 \end{thebibliography}\end{document}
+
+
 
 

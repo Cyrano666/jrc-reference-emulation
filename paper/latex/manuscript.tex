@@ -61,7 +61,7 @@ JRC targets containment of the prediction sets defined by a fixed reference pool
 Training-conditional validity has a longer history \cite{vovk2012}. Liang et al. study conformal inference with early stopping of neural-network training and reuse of hold-out data \cite{liangstop}. Xu et al. develop active, anytime-valid risk-controlling sets using a labeling policy and risk-predictor assistance \cite{active2024}. The August 2026 preprint by Skalse et al., \emph{Online Conformal Prediction Beyond Feedback} (arXiv:2608.07139v1), studies a game with prediction and label-query actions on non-independent streams. Together, these studies address limited labeling resources through several population-risk and sequential-decision objectives.
 
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{4pt}
 \caption{Related statistical targets and acquisition decisions}\label{tab:related}
 \begin{tabular}{p{24mm}p{38mm}p{42mm}p{44mm}}
@@ -222,6 +222,8 @@ The second quantile-interval baseline inverts the prior-posterior ratio confiden
 where $(a)_j$ denotes a falling factorial. Invert the resulting e-process separately at counts $k$ and $k-1$, allotting each error $\delta/2$. The minimum accepted count at $k$ gives the lower sample rank; one plus the maximum accepted count at $k-1$ gives the upper rank. We use the same running intersection, checkpoints and prediction-set stopping tolerance as the proposed engine.
 
 We additionally compare ordinary conformal quantiles from fixed 25\%, 50\% and 75\% prefixes, and an upper hypergeometric bound at a single fixed 50\% look. The former have no reference-containment guarantee. The latter protects the reference at that fixed look but does not adapt label expenditure to a prescribed set-size tolerance. Diagnostic ablations omit time correction, omit running intersection, return a midpoint at the proposed stopping time, or use sparse checkpoints. Their different guarantees are kept explicit.
+The one-look HG comparator queries $\lceil N/2\rceil$ labels and returns the upper endpoint of the same two-sided hypergeometric interval, with error 0.025 in each tail. Thus, ``50\% look'' identifies the query fraction. This comparator uses a more conservative upper endpoint than a one-sided bound assigning error 0.05 to the upper tail.
+
 \section{Experimental design}
 \label{sec:experiments}
 \subsection{Data and development history}
@@ -234,7 +236,7 @@ The selected input is three acceleration axes resampled to 128 time points. UCI 
 For USC-HAD, each original MAT trial remains separate. We take nonoverlapping 500-sample windows at the documented 100 Hz, retain acceleration columns 1--3, reject nonfinite windows and incomplete tails, and use anti-aliased polyphase resampling to 128 points. Dataset-provided trial segmentation is treated as available; our label-cost model does not charge or solve raw-stream segmentation. The filename convention supplies activity IDs. An independent schema audit finds one conflict: Subject14/a3t2.mat is activity 3 by filename but activity 2 (walking-left) in its internal metadata. Main labels follow the locked filename rule. A separate sensitivity excludes that trial, refitting classifiers whenever it occurs in training. Another file lacks the optional numeric activity field but has a matching activity-name string; it is retained. No exact duplicate signal arrays are found among the 840 trials. The main analysis and the exclusion sensitivity are both reported.
 
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
 \caption{Public datasets and retained samples}\label{tab:data}
 \begin{tabular}{lrrrlr}
@@ -272,7 +274,7 @@ Primary outcomes are queried-label savings $1-T/N$, reference-set containment fa
 
 For a test participant with empirical coverage $c_u$, positive shortfall is $(0.9-c_u)_+$. The positive part is calculated before averaging randomizations. Accuracy and macro-F1 describe the frozen point classifiers. Subject summaries average paired randomizations and repeated partitions; paired 95\% bootstrap intervals resample these summaries within each dataset. The intervals therefore describe participant variation conditional on the fitted models and partitions.
 
-JRC, Bonferroni HG and the confidence sequence based on the prior-posterior ratio use identical tolerances and query checkpoints. Ablations remove the running intersection, use a sparse checkpoint grid, omit repeated-look correction or return the midpoint at the proposed stopping time. The uncorrected and midpoint variants serve as diagnostic controls. Fixed fractions and a one-look upper bound provide additional label-cost and set-size trade-offs. Exploratory checks vary $\delta$ and compare monitoring on even-indexed inputs with evaluation on odd-indexed inputs in the first MR case of each development dataset.
+JRC, Bonferroni HG and the confidence sequence based on the prior-posterior ratio use identical tolerances and query checkpoints. Ablations remove the running intersection, use a sparse checkpoint grid, omit repeated-look correction or return the midpoint at the proposed stopping time. The uncorrected and midpoint variants serve as diagnostic controls. Fixed fractions and a one-look HG rule provide additional label-cost and set-size trade-offs. Exploratory checks vary $\delta$ and compare monitoring on even-indexed inputs with evaluation on odd-indexed inputs in the first MR case of each development dataset.
 
 All runs use an Intel Core i9-12900HX CPU and an RTX 4070 Laptop GPU with 8 GB memory for neural training. We measure boundary-table construction separately from online acquisition calculations. Human annotation duration and device energy were outside the computational benchmark. Exhaustive small-population enumeration checks both rank engines and the coupled recursion; additional checks cover ties, census behavior, oracle access and strictly monotone score transformations.
 
@@ -287,7 +289,7 @@ Five declared seeds and three user-disjoint test folds used four training, two c
 \subsection{Label savings against sequential quantile baselines}
 Table~\ref{tab:primary} reports absolute reference utility and label savings for the three interval methods. Figure~\ref{fig:2} adds the secondary APS score. All engines use the same confidence error, tolerance, pool and query order. This common setting isolates the acquisition efficiency of their quantile bounds.
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
 \caption{Primary LAC results at confidence error 0.05 and tolerance 0.5}\label{tab:primary}
 \begin{tabular}{lrrrrrr}
@@ -314,28 +316,28 @@ On USC-HAD, the joint engine saves 23.67\% of reference labels, compared with 17
 
 The six development datasets show a substantial range. Joint-engine savings are 71.62\% on HAR and 45.17\% on MHEALTH, but only 4.19\% on DSADS and 6.59\% on WISDM. PAMAP2 and REALDISP lie between these extremes. Large absolute savings are therefore not a universal property of certified stopping. Broad reference sets and score distributions with many decision changes near the reference quantile can make the tolerance costly to certify.
 \subsection{Reference preservation and absolute utility}
-Table~\ref{tab:confirm} and Fig.~\ref{fig:3} compare fixed-fraction reductions with the quantile-interval baselines. Fixed fractions provide substantial label savings by construction, but their ordinary prefix quantiles need not contain the full-reference sets. A midpoint at a certified stopping time similarly discards the reason that upper-endpoint containment holds. The one-look upper bound protects the reference at its predetermined sample size but has no adaptive 0.5-label size-inflation contract.
+Table~\ref{tab:confirm} and Fig.~\ref{fig:3} compare fixed-fraction reductions with the quantile-interval baselines. Fixed fractions provide substantial label savings by construction, but their ordinary prefix quantiles need not contain the full-reference sets. A midpoint at a certified stopping time similarly discards the reason that upper-endpoint containment holds. The one-look HG rule returns the upper endpoint of a two-sided interval at the predetermined 50\% query fraction; it does not impose the adaptive set-inflation tolerance.
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
 \caption{USC-HAD primary results and run-level failures}\label{tab:confirm}
-\begin{tabular}{lrrrrr}
+\begin{tabular}{lrrrrrr}
 \toprule
-Policy & Saved (\%) & Coverage (\%) & Set size & Threshold fail (\%) & Size fail (\%) \\
+Policy & Saved (\%) & Coverage (\%) & Set size & Window extra & Threshold fail (\%) & Size fail (\%) \\
 \midrule
-Full reference & 0.00 & 90.36 & 2.590 & 0.00 & 0.00 \\
-Joint rank engine & 23.67 & 91.80 & 2.769 & 2.04 & 0.72 \\
-Bonferroni HG & 17.91 & 91.86 & 2.774 & 0.45 & 0.21 \\
-Uniform-prior CS & 11.74 & 91.76 & 2.761 & 0.02 & 0.05 \\
-Fixed 25\% & 75.00 & 90.46 & 2.713 & 42.26 & 15.03 \\
-Fixed 50\% & 50.00 & 90.41 & 2.632 & 41.42 & 6.09 \\
-Fixed 75\% & 25.00 & 90.36 & 2.601 & 39.83 & 2.20 \\
-One-look upper 50\% & 50.00 & 93.83 & 3.356 & 1.73 & 46.64 \\
-Midpoint output & 23.67 & 90.04 & 2.562 & 46.40 & 0.14 \\
-No time correction & 33.71 & 91.73 & 2.766 & 6.29 & 3.02 \\
+Full reference & 0.00 & 90.36 & 2.590 & 0.0000 & 0.00 & 0.00 \\
+Joint rank engine & 23.67 & 91.80 & 2.769 & 0.1824 & 2.04 & 0.72 \\
+Bonferroni HG & 17.91 & 91.86 & 2.774 & 0.1870 & 0.45 & 0.21 \\
+Uniform-prior CS & 11.74 & 91.76 & 2.761 & 0.1735 & 0.02 & 0.05 \\
+Fixed 25\% & 75.00 & 90.46 & 2.713 & 0.1220 & 42.26 & 15.03 \\
+Fixed 50\% & 50.00 & 90.41 & 2.632 & 0.0416 & 41.42 & 6.09 \\
+Fixed 75\% & 25.00 & 90.36 & 2.601 & 0.0102 & 39.83 & 2.20 \\
+One-look HG (50\% look) & 50.00 & 93.83 & 3.356 & 0.7737 & 1.73 & 46.64 \\
+Midpoint output & 23.67 & 90.04 & 2.562 & -0.0282 & 46.40 & 0.14 \\
+No time correction & 33.71 & 91.73 & 2.766 & 0.1784 & 6.29 & 3.02 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize Saved (\%) = $100(1-T/N)$: window labels saved relative to the full reference pool of $N$ labels, excluding training, segmentation and setup costs. Threshold failure is upper output threshold below the complete-reference threshold. Size failure is monitoring-batch inflation above 0.5 labels. Rates average paired query campaigns, each counted once. Fixed fractions, midpoint output and the uncorrected rule do not have the proposed joint contract.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Saved (\%) = $100(1-T/N)$: window labels saved relative to the full reference pool of $N$ labels, excluding training, segmentation and setup costs. Coverage and set size use participant weighting. Window extra is mean set inflation on the monitoring windows, as in Eq.~(11), averaged equally over the declared query campaigns. One-look HG uses 2.5\% per tail and returns only the upper endpoint. Threshold failure is upper output threshold below the complete-reference threshold. Size failure is monitoring-batch inflation above 0.5 labels. Rates average paired query campaigns, each counted once. Fixed fractions, midpoint output and the uncorrected rule do not have the proposed joint contract.\end{minipage}
 \end{table*}
 
 \begin{figure*}[tp]\centering
@@ -353,7 +355,7 @@ Figure~\ref{fig:4} reports paired participant bootstrap intervals for additional
 \caption{Additional LAC label savings of JRC relative to (a) Bonferroni hypergeometric brackets and (b) the primary uniform-prior confidence sequence. Points are paired participant means; bars are 95\% bootstrap intervals conditional on the fitted models and partitions}\label{fig:4}
 \end{figure*}
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
 \caption{USC-HAD point-classifier and acquisition results}\label{tab:models}
 \begin{tabular}{lrrrrr}
@@ -376,7 +378,7 @@ Figure~\ref{fig:5} reports all four declared tolerances. Relaxing the allowed av
 \end{figure*}
 Table~\ref{tab:ablate} separates the mechanism choices. Removing running intersections reduces confirmation savings from 23.67\% to 21.10\%; sparse checkpoints reduce them to 16.84\%. Returning the midpoint retains the same label count but raises threshold failure to 46.40\%, illustrating why the protected upper endpoint is essential. Omitting repeated-look correction increases savings to 33.71\% and threshold failure to 6.29\%, above the declared 5\% error level.
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
 \caption{USC-HAD mechanism ablations}\label{tab:ablate}
 \begin{tabular}{lrrrr}
@@ -482,6 +484,7 @@ The full reference has mean coverage 88.10\% and mean set size 1.807; JRC return
 
 
 
+\clearpage\onecolumn\twocolumn
 \section{Discussion and limitations}
 JRC improves label efficiency by calibrating the joint rank path across checkpoints. The benefit is greatest when the reference quantile can be localized while adding few candidate labels. The main experiments and the separately specified HHAR confirmation support this mechanism. Stronger confidence-sequence priors recover part of the gap to the uniform-prior baseline, while JRC retains an advantage in the reported dataset averages.
 
@@ -493,7 +496,6 @@ The evaluation combines six development datasets with the main USC-HAD confirmat
 Joint rank calibration reduces the labels required to preserve a fixed calibration reference. Its coupled recursion controls quantile-boundary crossings across the declared checkpoints, and its stopping rule measures the resulting prediction-set ambiguity on unlabeled inputs. The main evaluation and the additional HHAR confirmation show useful savings over the tested interval comparators. The results also identify low-saving cases and the importance of reference quality, providing a concrete basis for choosing when to apply the method.
 
 
-\clearpage\onecolumn\twocolumn
 \backmatter
 \section*{Data availability}
 The eight public datasets analyzed in this study are available from their original sources \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Frozen classifier predictions, evaluation tables and protocol records supporting the reported results are provided in Online Resource~1.
@@ -573,7 +575,4 @@ Online Resource~1: reproduction code, frozen predictions, evaluation tables, pro
 
 \bibitem{hhar}\begin{minipage}[t]{\linewidth}Blunck H, Bhattacharya S, Prentow T, Kjaergaard M, Dey A (2015) Heterogeneity activity recognition. UCI Machine Learning Repository. Dataset. CC BY 4.0. \url{https://doi.org/10.24432/C5689X}\end{minipage}
 \end{thebibliography}\end{document}
-
-
-
 

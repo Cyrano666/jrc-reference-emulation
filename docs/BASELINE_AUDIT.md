@@ -1,0 +1,7 @@
+# One-look definition and monitoring-batch metric
+
+The frozen one_look_50 rule queries ceil(N/2) labels and returns the upper endpoint of a two-sided HG bracket with 0.025 per tail. Its manuscript label is now One-look HG (50% look). It is not a one-sided upper confidence bound using a 0.05 tail. Upper sample ranks for N=120,240,480,960 are 58,114,223,442; assigning 0.05 only to the upper tail would give 58,113,222,441. No such stronger one-sided rule has been substituted into the frozen results.
+
+Table 4 now displays monitoring-window mean inflation directly. These values average actual_inflation in revision6/summaries/campaign_cells.csv over all declared USC-HAD LAC campaigns at tolerance 0.5, matching failure-rate aggregation. Existing coverage and set-size columns use participant weighting. Values for a single N must not be copied into a table aggregated across all pool ceilings. In the full aggregate the window-inflation means are 0.1824 (JRC), 0.1870 (HG), 0.1735 (uniform-prior CS), and 0.7737 (one-look). A negative value for the midpoint means that it can return smaller sets and lose reference labels.
+
+Reproduce this audit with python audits/baseline_definition.py. The original locked code and frozen numerical tables are preserved. The audit adds a reported metric and clarifies the existing comparator; it does not constitute another independent confirmation experiment.

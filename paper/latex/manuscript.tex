@@ -417,14 +417,12 @@ The exclusion sensitivity removes the USC-HAD trial with conflicting activity id
 Boundary tables depend only on the finite design and can be reused. Table~\ref{tab:runtime} separates table construction from execution with a cached table. Timings exclude JIT compilation, model inference and human labeling. The online benchmark uses a fixed synthetic score array and 1,000 unlabeled inputs with 12 candidate classes to isolate computation; this benchmark isolates computation from recognition quality.
 
 
-\begin{figure*}[tp]\centering
+\begin{figure*}[p]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig7.pdf}}
 \caption{Reference utility and acquisition behavior for LAC: (a) label savings versus full-reference set size; (b) returned-set versus reference coverage. Each point represents one dataset-classifier mean; dataset identity is encoded by both marker shape and color. Each dataset contributes LR, MR and IT points, whose identities and values are supplied in the model-summary table of Online Resource 1. The diagonal indicates equal coverage}\label{fig:7}
-\end{figure*}
-\begin{table*}[tp]
-\begin{minipage}{\textwidth}
 
-\begin{minipage}{\textwidth}
+\par\vspace{14pt}
+\begin{minipage}{0.9\textwidth}
 \centering\small\setlength{\tabcolsep}{5pt}
 \reviewtablecaption{Post-confirmation prior sensitivity: percentage of reference labels saved}\label{tab:priors}
 \begin{tabular}{lrrrrr}
@@ -440,11 +438,11 @@ REALDISP & 18.56 & 8.82 & 9.16 & 10.86 & 11.73 \\
 USC-HAD & 23.67 & 11.74 & 12.01 & 14.22 & 15.33 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize LAC, confidence error 0.05, tolerance 0.5 and the original paired query orders. CS$(a,b)$ uses a Beta$(a,b)$ mixing distribution. Values give equal weight to participant summaries. All four choices are reported; this diagnostic follows the main confirmation\end{minipage}
+\par\vspace{4pt}\raggedright\footnotesize LAC, confidence error 0.05, tolerance 0.5 and the original paired query orders. CS$(a,b)$ uses a Beta$(a,b)$ mixing distribution. Values give equal weight to participant summaries. All four choices are reported; this diagnostic follows the main confirmation\par
 \end{minipage}
-\par\vspace{16pt}\noindent
-\begin{minipage}{\textwidth}
-\centering\small\setlength{\tabcolsep}{3pt}
+\par\vspace{14pt}
+\begin{minipage}{0.9\textwidth}
+\centering\small\setlength{\tabcolsep}{4pt}
 \reviewtablecaption{Boundary construction and cached acquisition computation}\label{tab:runtime}
 \begin{tabular}{lrrr}
 \toprule
@@ -456,11 +454,20 @@ Pool size & Build table (ms) & Cached query loop (ms) & Exact crossing probabili
 960 & 153.41 & 0.45 & 0.04981 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize Five repeated timings per size on the stated CPU. All confidence errors are 0.05. Boundary construction is a one-time cost for each distinct pool and checkpoint design; query execution includes sorting monitoring scores and observed prefixes.\end{minipage}
+\par\vspace{4pt}\raggedright\footnotesize Five repeated timings per size on the stated CPU. All confidence errors are 0.05. Boundary construction is a one-time cost for each distinct pool and checkpoint design; query execution includes sorting monitoring scores and observed prefixes.\par
 \end{minipage}
-\par\vspace{16pt}\end{minipage}
-\par\vspace{12pt}\begin{minipage}{\textwidth}
-\centering\small\setlength{\tabcolsep}{2pt}
+\end{figure*}
+\subsection{Additional HHAR confirmation}
+Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
+
+The full-reference coverage and mean set size are 88.10\% and 1.807, compared with 90.84\% and 1.997 for JRC. Table~\ref{tab:hhar} also reports threshold and monitoring-batch inflation failures. Secondary pool-size, APS and classifier results are in Online Resource~1.
+
+
+
+\clearpage\onecolumn\twocolumn[{
+\begin{minipage}{\textwidth}\centering
+\begin{minipage}{0.65\textwidth}
+\centering\small\setlength{\tabcolsep}{7pt}
 \reviewtablecaption{Additional HHAR primary confirmation, $N=240$}\label{tab:hhar}
 \begin{tabular}{lrrr}
 \toprule
@@ -474,17 +481,11 @@ CS$(9,1)$ & 25.13 & 0.28 & 0.00 \\
 CS$(1,1)$ & 20.64 & 0.06 & 0.00 \\
 \botrule
 \end{tabular}
-\par\vspace{3pt}\raggedright\footnotesize Saved (\%) = $100(1-T/N)$ relative to the complete reference pool, excluding training, segmentation and setup costs. CS$(a,b)$ uses a Beta$(a,b)$ prior; CS$(1,1)$ is uniform. Failure rates count query campaigns once.\par
+\par\vspace{4pt}\raggedright\footnotesize Saved (\%) = $100(1-T/N)$ relative to the complete reference pool, excluding training, segmentation and setup costs. CS$(a,b)$ uses a Beta$(a,b)$ prior; CS$(1,1)$ is uniform. Failure rates count query campaigns once.\par
 \end{minipage}
-\end{table*}
-\subsection{Additional HHAR confirmation}
-Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
+\par\vspace{16pt}\end{minipage}
 
-The full reference has mean coverage 88.10\% and mean set size 1.807; JRC returns 90.84\% coverage and mean set size 1.997. Threshold and monitoring-batch inflation failures are reported alongside savings. Secondary pool-size, APS and classifier-specific results are retained in Online Resource~1. This additional cohort supports the acquisition gain on a separately collected dataset under the fixed continuity rules.
-
-
-
-\clearpage\onecolumn\twocolumn
+}]
 \section{Discussion and limitations}
 JRC improves label efficiency by calibrating the joint rank path across checkpoints. The benefit is greatest when the reference quantile can be localized while adding few candidate labels. The main experiments and the separately specified HHAR confirmation support this mechanism. Stronger confidence-sequence priors recover part of the gap to the uniform-prior baseline, while JRC retains an advantage in the reported dataset averages.
 
@@ -497,14 +498,20 @@ Joint rank calibration reduces the labels required to preserve a fixed calibrati
 
 
 \backmatter
+\par\addvspace{10pt}\noindent\begin{minipage}{\columnwidth}
 \section*{Data availability}
 The eight public datasets analyzed in this study are available from their original sources \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Frozen classifier predictions, evaluation tables and protocol records supporting the reported results are provided in Online Resource~1.
+\end{minipage}\par
 
+\par\addvspace{10pt}\noindent\begin{minipage}{\columnwidth}
 \section*{Code availability}
 The acquisition algorithms, analysis code and reproduction instructions are available at \url{https://github.com/Cyrano666/jrc-reference-emulation}. Online Resource~1 contains the accompanying code snapshot.
+\end{minipage}\par
 
+\par\addvspace{10pt}\noindent\begin{minipage}{\columnwidth}
 \section*{Supplementary information}
 Online Resource~1: reproduction code, frozen predictions, evaluation tables, protocol records, verification results and editable figure sources.
+\end{minipage}\par
 
 \begin{thebibliography}{99}\fontsize{9}{11}\selectfont\setlength{\itemsep}{2pt}
 \bibitem{guo}\begin{minipage}[t]{\linewidth}Guo C, Pleiss G, Sun Y, Weinberger KQ (2017) On calibration of modern neural networks. Proceedings of Machine Learning Research 70:1321-1330. \url{https://proceedings.mlr.press/v70/guo17a.html}\end{minipage}

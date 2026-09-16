@@ -1,6 +1,6 @@
 # Current candidate and history
 
-Use the submission-candidate-2026-09-16 release for the current manuscript, author page, source and supplement. The latest release is an author-review submission candidate, not a claim of acceptance or final author approval.
+Use the submission-files-2026-09-16 release for the current manuscript, author page, source and supplement. The release contains the current submission files; it is not an accepted journal article.
 
 The repository remains public, matching the manuscript code-availability statement and public HHAR protocol timestamp. Private access would require a different reviewer-access arrangement and revised manuscript links.
 

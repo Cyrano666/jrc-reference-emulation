@@ -11,23 +11,23 @@
   },
   {
     "path": "CITATION.cff",
-    "bytes": 608,
-    "sha256": "5bae438e1e348a7a02f02de627cd5499e69279c898fe416335cae7d05229808c"
+    "bytes": 604,
+    "sha256": "1de9c190e23f6d8c23b90c693b716ecd1f08ac9181c02d2ae90e7c1015b1d57f"
   },
   {
     "path": "ONLINE_RESOURCE_1.md",
-    "bytes": 1040,
-    "sha256": "fb975ababf6e9e3139c911ae6f45214f13f1c473b8950acb8fa89219e195fdc3"
+    "bytes": 1138,
+    "sha256": "5ce225034eead72c8377009bf6b5dad6b5e3ec7fdbe69bf50840e5cde2e45fab"
   },
   {
     "path": "README.md",
-    "bytes": 6017,
-    "sha256": "469c78ab6b9a0ace8f9cb9bdef13d7e5397fc6effb40724aa618d31f03fd811b"
+    "bytes": 6009,
+    "sha256": "ff2419b32d3e2b4fca26cd8d64eba093aa8d9b59f4e5ab4b9dbc304f0d919806"
   },
   {
     "path": "article_metadata.json",
-    "bytes": 686,
-    "sha256": "867e2f687fc4d261d1358ba971152804b6aee0eef3fb53c79f4816f5a91fefd9"
+    "bytes": 683,
+    "sha256": "2406e1bdb0d7729ccdcc4ad852cec33b442cab5c62308a32b708ae83294f40aa"
   },
   {
     "path": "audits/baseline_definition.json",
@@ -1290,14 +1290,19 @@
     "sha256": "eca7dc4bbee27917df507481780c645309afb6e44187e2304c6c4488f35344a3"
   },
   {
+    "path": "docs/FINAL_LAYOUT_CHECK.md",
+    "bytes": 789,
+    "sha256": "bb38eda749e4518f009119c88618f469a4149576c7d45f1c0d24de2a648ea9b9"
+  },
+  {
     "path": "docs/METHOD.md",
     "bytes": 1374,
     "sha256": "e53b29d775b332ebfde48a74b5b8ffb2f6839111a6eb84893a71f7bb269504aa"
   },
   {
     "path": "docs/REPOSITORY_ORGANIZATION.md",
-    "bytes": 1033,
-    "sha256": "16f15511a96d5d75437a263d9b4bd6337b6d9fc1136f188372d7c27ed7982675"
+    "bytes": 1006,
+    "sha256": "724d017896ed3f95d9f050d6c912af006d17c18287ac3f42d811316ed4c59189"
   },
   {
     "path": "docs/REPRODUCTION.md",
@@ -1481,13 +1486,13 @@
   },
   {
     "path": "paper/latex/README.md",
-    "bytes": 674,
-    "sha256": "c100f9bda6f0c74eead94b9d063df9e9eaf3094d3128102cfa28a990945afbaf"
+    "bytes": 620,
+    "sha256": "2c8790d02f4ed12253f823d31231a6708c6ff4018b90b7211bf014bcef37ebd0"
   },
   {
     "path": "paper/latex/manuscript.tex",
-    "bytes": 66255,
-    "sha256": "0f9e9558e2ed14e7689d023ec079d9f3171abee0db45376d4a138a38bfb1a17f"
+    "bytes": 66314,
+    "sha256": "8afad45a37b1b40cbe2ff9213d42808084eee888f7aa8c713b5eba1a82a03b6d"
   },
   {
     "path": "paper/latex/sn-basic.bst",
@@ -1501,8 +1506,8 @@
   },
   {
     "path": "paper/manuscript.pdf",
-    "bytes": 855852,
-    "sha256": "88db3ca390193c32304459427ef583b33e5425661753578c71e4e9db507e10cb"
+    "bytes": 855450,
+    "sha256": "8346a49d3c8332247a6e88e83ecac99fdb02ec44a06179530e7633c2a6a94097"
   },
   {
     "path": "reproduce.py",

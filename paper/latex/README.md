@@ -1,9 +1,7 @@
-# Pattern Analysis and Applications LaTeX source
+# Pattern Analysis and Applications source
 
-Compile manuscript.tex with pdfLaTeX three times. The official Springer Nature sn-jnl.cls and sn-basic.bst are supplied unchanged. Figures use local filenames and the bibliography is self-contained.
+Compile manuscript.tex with pdfLaTeX three times. All local figure files and the unchanged official Springer Nature class and bibliography style are included. Numbered references are self-contained in manuscript.tex. The author page and submission-system text are supplied separately.
 
-Authors: Xin Feng (first author) and Decong Yang (corresponding author), Xinjiang University, Urumqi, China. Correspondence: 20232501525@stu.xju.edu.cn.
+The class and style were verified byte-for-byte against the December 2024 official template package supplied by the authors. The journal-specific instructions take precedence over illustrative content in sn-article.pdf.
 
-The editable title page and declarations are supplied separately as Word. Both authors must review and approve the final submission. This is a review version, not an accepted article.
-
-Instructions: https://link.springer.com/journal/10044/submission-guidelines
+https://link.springer.com/journal/10044/submission-guidelines

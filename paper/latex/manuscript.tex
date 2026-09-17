@@ -74,7 +74,7 @@ Waudby-Smith and Ramdas\ \cite{wor} & Fixed population sampled without replaceme
 JRC & Corrected order statistic of a fixed finite reference pool & Endpoint set-size difference below a batch-specific tolerance & Reference-set containment for all inputs; average inflation control on the monitoring batch \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize The rows summarize the statistical targets. JRC evaluates acquisition rules under a common finite-reference containment requirement and monitoring-batch size tolerance\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize All methods are compared under their stated sampling target and stopping contract.\end{minipage}
 \end{table*}
 
 \subsection{Sequential finite-population inference}
@@ -252,7 +252,7 @@ REALDISP & 15 & 2,444 & 33 & BACK acceleration & 5 \\
 USC-HAD & 14 & 5,353 & 12 & Front right hip acceleration & 5 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize The first six datasets are development and reanalysis; USC-HAD is the locked confirmation benchmark. All signals have three axes and are resampled to 128 points. Eligibility requires at least 120 windows per participant. Sample counts refer to the fixed main preprocessing, before the separate USC-HAD schema sensitivity.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize The first six datasets are developmental; USC-HAD is the locked confirmation. Counts follow the fixed preprocessing before schema sensitivity.\end{minipage}
 \end{table*}
 
 \subsection{Frozen classifiers and subject partitions}
@@ -267,12 +267,12 @@ The least ambiguous set-valued classifier (LAC) score \cite{sadinle} is $s(x,y)=
 
 The primary settings are confidence error $\delta=0.05$, mean set-inflation tolerance $\tau=0.5$, and checkpoints every 20 queried labels plus the census. The tolerance is measured in additional candidate labels per monitoring input. Secondary tolerances are 0.1, 0.25 and 1.0. Forty paired randomizations of pool selection and query order are used for each classifier case and ceiling. Every comparator shares the seeds, participants and windows. Complete labels define the evaluation reference; an oracle-based replay checks that acquisition decisions use only the labels already queried.
 
-The complete test-input batch supplies monitoring scores with true labels hidden. The stopping statistic averages set size over windows in that batch. Empirical coverage and set size are also summarized with equal weight per participant. These two aggregations are retained explicitly in the result tables.
+The complete test-input batch supplies monitoring scores with true labels hidden. Label-cost savings exclude training, segmentation and participant setup. The stopping guarantee uses monitoring-window weighting, whereas reported coverage and set size use participant summaries. The stopping statistic averages set size over windows in that batch. Empirical coverage and set size are also summarized with equal weight per participant. These two aggregations are retained explicitly in the result tables.
 
 \subsection{Metrics, uncertainty and ablations}
 Primary outcomes are queried-label savings $1-T/N$, reference-set containment failure and batch size inflation. A containment failure is the conservative scalar event $\overline U_T<q_{\rm ref}$; with ties or gaps in candidate scores, this can flag a threshold failure even when no observed test set loses a label. Bracket failure checks both endpoints. Size failure checks whether actual mean extra labels on the monitoring batch exceed $\tau$. Each query campaign is counted once, regardless of the number of held-out people.
 
-For a test participant with empirical coverage $c_u$, positive shortfall is $(0.9-c_u)_+$. The positive part is calculated before averaging randomizations. Accuracy and macro-F1 describe the frozen point classifiers. Subject summaries average paired randomizations and repeated partitions; paired 95\% bootstrap intervals resample these summaries within each dataset. The intervals therefore describe participant variation conditional on the fitted models and partitions.
+For a test participant with empirical coverage $c_u$, positive shortfall is $(0.9-c_u)_+$. The positive part is calculated before averaging randomizations. Accuracy and macro-F1 describe the frozen point classifiers. Macro-F1 includes all activity classes, with zero contribution for undefined class scores. Subject summaries average paired randomizations and repeated partitions; paired 95\% bootstrap intervals resample these summaries within each dataset. The intervals therefore describe participant variation conditional on the fitted models and partitions.
 
 JRC, Bonferroni HG and the confidence sequence based on the prior-posterior ratio use identical tolerances and query checkpoints. Ablations remove the running intersection, use a sparse checkpoint grid, omit repeated-look correction or return the midpoint at the proposed stopping time. The uncorrected and midpoint variants serve as diagnostic controls. Fixed fractions and a one-look HG rule provide additional label-cost and set-size trade-offs. Exploratory checks vary $\delta$ and compare monitoring on even-indexed inputs with evaluation on odd-indexed inputs in the first MR case of each development dataset.
 
@@ -305,7 +305,7 @@ REALDISP & 89.80 & 2.377 & 18.56 & 13.77 & 8.82 & 0.163 \\
 USC-HAD & 90.36 & 2.590 & 23.67 & 17.91 & 11.74 & 0.179 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize Saved (\%) = $100(1-T/N)$: window labels saved relative to the full reference pool of $N$ labels, excluding training, segmentation and setup costs. HG: Bonferroni hypergeometric brackets. CS: prior-posterior ratio rank confidence sequence. Coverage and set size give equal weight to participant summaries. Extra size is relative to the full reference. The stopping guarantee concerns the window-weighted monitoring batch.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Saved (\%) is $100(1-T/N)$ relative to the full reference pool. Coverage, set size and extra size use equally weighted participant summaries; extra size is relative to the full reference. HG: Bonferroni hypergeometric; CS: prior-posterior rank confidence sequence.\end{minipage}
 \end{table*}
 
 \begin{figure*}[tp]\centering
@@ -337,7 +337,7 @@ Midpoint output & 23.67 & 90.04 & 2.562 & -0.0282 & 46.40 & 0.14 \\
 No time correction & 33.71 & 91.73 & 2.766 & 0.1784 & 6.29 & 3.02 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize Saved (\%) = $100(1-T/N)$: window labels saved relative to the full reference pool of $N$ labels, excluding training, segmentation and setup costs. Coverage and set size use participant weighting. Window extra is mean set inflation on the monitoring windows, as in Eq.~(11), averaged equally over the declared query campaigns. One-look HG uses 2.5\% per tail and returns only the upper endpoint. Threshold failure is upper output threshold below the complete-reference threshold. Size failure is monitoring-batch inflation above 0.5 labels. Rates average paired query campaigns, each counted once. Fixed fractions, midpoint output and the uncorrected rule do not have the proposed joint contract.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Saved (\%) is $100(1-T/N)$ relative to the full reference pool. Coverage and set size use participant weighting; Window extra is mean added set size over monitoring windows. Threshold fail: $\overline U_T<q_{\rm ref}$; Size fail: window inflation $>0.5$. Failure rates average query campaigns. One-look HG uses 2.5\% per tail and returns the upper endpoint.\end{minipage}
 \end{table*}
 
 \begin{figure*}[tp]\centering
@@ -367,7 +367,7 @@ MR & 68.04 & 65.40 & 23.31 & 92.82 & 2.573 \\
 IT & 65.14 & 60.32 & 14.85 & 89.83 & 2.967 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize Each classifier has 35 main outer partitions. IT denotes a single InceptionTime-style network. Macro-F1 includes all 12 classes, with zero contribution for undefined class scores according to the supplied implementation.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Each classifier has 35 outer partitions. IT is one InceptionTime-style network; macro-F1 includes all 12 classes.\end{minipage}
 \end{table*}
 \subsection{Tolerance, query checkpoints and mechanism ablations}
 Figure~\ref{fig:5} reports mean savings at all four tolerances declared before the USC-HAD results. Paired uncertainty at the primary tolerance is shown in Fig.~\ref{fig:4}. Relaxing the allowed average number of additional labels permits earlier stopping, as expected from Eq.~\eqref{eq:width}. The tolerance controls the permitted added ambiguity and the resulting cost-utility trade-off. The primary tolerance remains 0.5 on confirmation; it was not selected by maximizing the confirmation savings.
@@ -376,7 +376,7 @@ Figure~\ref{fig:5} reports mean savings at all four tolerances declared before t
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig5.pdf}}
 \caption{Mean label savings of JRC versus the allowed extra set size: (a) LAC; (b) APS. Markers and line styles identify datasets}\label{fig:5}
 \end{figure*}
-Table~\ref{tab:ablate} separates the mechanism choices. Removing running intersections reduces confirmation savings from 23.67\% to 21.10\%; sparse checkpoints reduce them to 16.84\%. Returning the midpoint retains the same label count but raises threshold failure to 46.40\%, illustrating why the protected upper endpoint is essential. Omitting repeated-look correction increases savings to 33.71\% and threshold failure to 6.29\%, above the declared 5\% error level.
+Table~\ref{tab:ablate} separates the mechanism choices. The first three rows retain their stated boundaries and checkpoints; midpoint and uncorrected variants are diagnostics. Removing running intersections reduces confirmation savings from 23.67\% to 21.10\%; sparse checkpoints reduce them to 16.84\%. Returning the midpoint retains the same label count but raises threshold failure to 46.40\%, illustrating why the protected upper endpoint is essential. Omitting repeated-look correction increases savings to 33.71\% and threshold failure to 6.29\%, above the declared 5\% error level.
 
 \begin{table*}[tp]
 \centering\small\setlength{\tabcolsep}{3pt}
@@ -392,7 +392,7 @@ Midpoint output & 23.67 & -0.028 & 46.40 & 0.14 \\
 No time correction & 33.71 & 0.175 & 6.29 & 3.02 \\
 \botrule
 \end{tabular}
-\begin{minipage}{\textwidth}\footnotesize Saved (\%) = $100(1-T/N)$: window labels saved relative to the full reference pool of $N$ labels, excluding training, segmentation and setup costs. Only the first three rows retain the declared guarantee with their respective boundaries and checkpoints. The midpoint has the same stopping labels as the joint engine but a different output rule. The uncorrected rule reuses fixed-time intervals at multiple looks.\end{minipage}
+\begin{minipage}{\textwidth}\footnotesize Saved (\%) is $100(1-T/N)$ relative to the full reference pool. Extra size uses participant weighting and is relative to the reference. The first three rows retain their stated guarantees; midpoint and uncorrected rows are diagnostics.\end{minipage}
 \end{table*}
 Figure~\ref{fig:6} traces the first declared USC-HAD MR query campaign at a 480-window pool. This case is selected by its fixed index, not by searching for the largest gain. The census collapses all valid constructions to the same full-reference quantile, approximately 0.999436 in this example. The $10^{-16}$ floor in panel (a) is a plotting convention only. Before that point, the mapping from rank uncertainty to set membership determines when each engine meets the tolerance.
 
@@ -414,7 +414,7 @@ Table~\ref{tab:priors} reports all four prior choices. Tail-centered priors impr
 \subsection{Schema exclusion and computation}
 The exclusion sensitivity removes the USC-HAD trial with conflicting activity identifiers from every data role. The original classifier is reused only when that trial was absent from its training set; otherwise it is refitted. Joint-engine label savings change from 23.67\% to 22.70\%, coverage from 91.80\% to 92.30\%, and mean set size from 2.769 to 2.814. This check measures sensitivity to the ambiguity; it does not establish which of the conflicting original labels is correct. The locked main data and outcomes remain intact.
 
-Boundary tables depend only on the finite design and can be reused. Table~\ref{tab:runtime} separates table construction from execution with a cached table. Timings exclude JIT compilation, model inference and human labeling. The online benchmark uses a fixed synthetic score array and 1,000 unlabeled inputs with 12 candidate classes to isolate computation; this benchmark isolates computation from recognition quality.
+Boundary tables depend only on the finite design and can be reused. Table~\ref{tab:runtime} separates table construction from execution with a cached table. Timings exclude JIT compilation, model inference and human labeling. Cached query execution includes sorting monitoring scores and observed prefixes. The online benchmark uses a fixed synthetic score array and 1,000 unlabeled inputs with 12 candidate classes to isolate computation; this benchmark isolates computation from recognition quality.
 
 
 \begin{figure*}[p]\centering
@@ -438,7 +438,7 @@ REALDISP & 18.56 & 8.82 & 9.16 & 10.86 & 11.73 \\
 USC-HAD & 23.67 & 11.74 & 12.01 & 14.22 & 15.33 \\
 \botrule
 \end{tabular}
-\par\vspace{4pt}\raggedright\footnotesize LAC, confidence error 0.05, tolerance 0.5 and the original paired query orders. CS$(a,b)$ uses a Beta$(a,b)$ mixing distribution. Values give equal weight to participant summaries. All four choices are reported; this diagnostic follows the main confirmation\par
+\par\vspace{4pt}\raggedright\footnotesize LAC at $\delta=0.05$ and $\tau=0.5$. CS$(a,b)$ uses a Beta$(a,b)$ mixture; values use participant weighting. This diagnostic follows confirmation.\par
 \end{minipage}
 \par\vspace{14pt}
 \begin{minipage}{0.9\textwidth}
@@ -454,7 +454,7 @@ Pool size & Build table (ms) & Cached query loop (ms) & Exact crossing probabili
 960 & 153.41 & 0.45 & 0.04981 \\
 \botrule
 \end{tabular}
-\par\vspace{4pt}\raggedright\footnotesize Five repeated timings per size on the stated CPU. All confidence errors are 0.05. Boundary construction is a one-time cost for each distinct pool and checkpoint design; query execution includes sorting monitoring scores and observed prefixes.\par
+\par\vspace{4pt}\raggedright\footnotesize Five repetitions on the stated CPU at $\delta=0.05$. Build time is per pool/checkpoint design; query time uses cached boundaries.\par
 \end{minipage}
 \end{figure*}
 \clearpage\onecolumn\twocolumn[{
@@ -474,7 +474,7 @@ CS$(9,1)$ & 25.13 & 0.28 & 0.00 \\
 CS$(1,1)$ & 20.64 & 0.06 & 0.00 \\
 \botrule
 \end{tabular}
-\par\vspace{4pt}\raggedright\footnotesize Saved (\%) = $100(1-T/N)$ relative to the complete reference pool, excluding training, segmentation and setup costs. CS$(a,b)$ uses a Beta$(a,b)$ prior; CS$(1,1)$ is uniform. Failure rates count query campaigns once.\par
+\par\vspace{4pt}\raggedright\footnotesize Saved (\%) is $100(1-T/N)$ relative to the full reference pool. CS$(a,b)$ denotes the Beta prior; failure rates count query campaigns.\par
 \end{minipage}
 \par\vspace{16pt}\end{minipage}
 

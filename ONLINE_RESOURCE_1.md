@@ -13,3 +13,5 @@ These are the submission files dated 17 September 2026. It adds a one-look defin
 ORCID: Xin Feng 0009-0008-3242-7961; Decong Yang 0009-0009-9295-5149.
 
 Figure captions are concise; supporting explanations are in the associated manuscript text.
+
+Figure captions and table notes are concise; supporting explanations are in the associated manuscript text.

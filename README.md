@@ -4,7 +4,7 @@
 
 Research code and reproducibility materials accompanying an unpublished manuscript targeting Pattern Analysis and Applications.
 
-**Current submission files:** [all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/submission-files-2026-09-17-tables). Earlier review releases are historical records, not the current manuscript.
+**Current submission files:** [all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/submission-ready-2026-09-17). Earlier review releases are historical records, not the current manuscript.
 
 The revision/, revision5/, revision6/ and revision7/ directories contain different shared, locked or diagnostic components. They are not interchangeable manuscript copies; retain their paths for reproducibility. See [repository organization](docs/REPOSITORY_ORGANIZATION.md).
 

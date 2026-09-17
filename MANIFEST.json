@@ -11,18 +11,18 @@
   },
   {
     "path": "CITATION.cff",
-    "bytes": 611,
-    "sha256": "68ce93022d69a85e5ae3451c064e35dceea48b66b2f271f75a17ec2007b0c8a9"
+    "bytes": 604,
+    "sha256": "69ddba7040e43a686ec51d140de93bb18acf96fd160684410b8f839245686689"
   },
   {
     "path": "ONLINE_RESOURCE_1.md",
-    "bytes": 1340,
-    "sha256": "755bc4e8185e33dafa5082322f3b13002fc172ac5fb377a9d134363720452977"
+    "bytes": 1766,
+    "sha256": "a1ce1b8c769fd6e7776a4d13a6dbc7cb6f9b181533539fd6b2ad38d474ef5b9b"
   },
   {
     "path": "README.md",
-    "bytes": 6016,
-    "sha256": "1cff03e71f6b291cb093b636b25e63e38d645b4f752144aa4b399d2099777f03"
+    "bytes": 6009,
+    "sha256": "1055d4ae688610edabd27d4108a785fe759fde7fde2854c1794d18b0255eaf96"
   },
   {
     "path": "article_metadata.json",
@@ -1291,8 +1291,8 @@
   },
   {
     "path": "docs/FINAL_LAYOUT_CHECK.md",
-    "bytes": 1125,
-    "sha256": "6fb055781606e75cada2ffee610ece0328b4e0b7bd9f8f36d448c676337f96d0"
+    "bytes": 1081,
+    "sha256": "c4b0a71df707c174bdc7b2f03694d223b6f0ea94c70c9c640050599f0c42e74c"
   },
   {
     "path": "docs/METHOD.md",
@@ -1301,8 +1301,8 @@
   },
   {
     "path": "docs/REPOSITORY_ORGANIZATION.md",
-    "bytes": 1013,
-    "sha256": "9fd924cec0d779d5742d58457fce0ae3e6023280d160fc83068fc8c5a6708e2c"
+    "bytes": 1006,
+    "sha256": "d8e0a4df33557cafa2071b4ff56630dd9cb35748bae658e7b13310b000bc3567"
   },
   {
     "path": "docs/REPRODUCTION.md",
@@ -1491,8 +1491,8 @@
   },
   {
     "path": "paper/latex/manuscript.tex",
-    "bytes": 64825,
-    "sha256": "bb3e85b730dda2448b0c462363e2863d7c7a89b64880465708fac64ee9e48783"
+    "bytes": 64872,
+    "sha256": "c2ecf617c130c34b8d3fd93508ddfc9d62f837c0bd22995509679a64a41325bd"
   },
   {
     "path": "paper/latex/sn-basic.bst",
@@ -1506,8 +1506,8 @@
   },
   {
     "path": "paper/manuscript.pdf",
-    "bytes": 873591,
-    "sha256": "b7a0fb03979d2e0a0b1271d1420bc75ea40144cc11ae2ee7712d9c02e7badc5f"
+    "bytes": 873355,
+    "sha256": "368c05279254becbfe2c0fcf566010ca303c991c38eb98f0a861087e943a8850"
   },
   {
     "path": "reproduce.py",

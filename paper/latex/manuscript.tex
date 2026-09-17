@@ -87,7 +87,7 @@ Figure~\ref{fig:1} shows the frozen-model and query workflow. The running extrem
 
 \begin{figure*}[tp]\centering
 \makebox[\textwidth][c]{\includegraphics[width=174mm]{Fig1.pdf}}
-\caption{JRC workflow: (a) frozen classifier and inputs; (b) offline rank-boundary calibration; (c) sequential label acquisition and prediction-set stopping}\label{fig:1}
+\caption{JRC framework. (a) A frozen classifier provides candidate-label scores. (b) Joint rank calibration constructs checkpoint boundaries before querying. (c) Labels are queried uniformly without replacement to update the quantile bracket; querying stops when the endpoint sets meet the monitoring-batch size tolerance, and the upper-endpoint sets are returned}\label{fig:1}
 \end{figure*}
 
 \subsection{Target, information and cost}
@@ -457,6 +457,11 @@ Pool size & Build table (ms) & Cached query loop (ms) & Exact crossing probabili
 \par\vspace{4pt}\raggedright\footnotesize Five repetitions on the stated CPU at $\delta=0.05$. Build time is per pool/checkpoint design; query time uses cached boundaries.\par
 \end{minipage}
 \end{figure*}
+\subsection{Additional HHAR confirmation}
+Table~\ref{tab:hhar} reports HHAR label savings of 34.03\% for JRC, 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. Paired gains are 5.45 percentage points (95\% CI 5.09--5.85) against HG and 8.89 (8.52--9.23) against CS. These participant-bootstrap intervals condition on the fitted models and partitions.
+
+Reference coverage and mean set size are 88.10\% and 1.807, versus 90.84\% and 1.997 for JRC. Table~\ref{tab:hhar} includes both failure rates; secondary pool-size, APS and classifier results are in Online Resource~1.
+
 \clearpage\onecolumn\twocolumn[{
 \begin{minipage}{\textwidth}\centering
 \begin{minipage}{0.65\textwidth}
@@ -479,13 +484,6 @@ CS$(1,1)$ & 20.64 & 0.06 & 0.00 \\
 \par\vspace{16pt}\end{minipage}
 
 }]
-\subsection{Additional HHAR confirmation}
-Table~\ref{tab:hhar} reports the additional primary confirmation. JRC saves 34.03\% of reference labels, compared with 28.58\% for HG and 25.13\% for the pre-specified Beta$(9,1)$ CS. The paired differences are 5.45 percentage points (95\% CI 5.09 to 5.85) against HG and 8.89 percentage points (95\% CI 8.52 to 9.23) against the stronger-prior CS. These intervals describe participant variation conditional on the fitted models and partitions.
-
-The full-reference coverage and mean set size are 88.10\% and 1.807, compared with 90.84\% and 1.997 for JRC. Table~\ref{tab:hhar} also reports threshold and monitoring-batch inflation failures. Secondary pool-size, APS and classifier results are in Online Resource~1.
-
-
-
 \section{Discussion and limitations}
 JRC improves label efficiency by calibrating the joint rank path across checkpoints. The benefit is greatest when the reference quantile can be localized while adding few candidate labels. The main experiments and the separately specified HHAR confirmation support this mechanism. Stronger confidence-sequence priors recover part of the gap to the uniform-prior baseline, while JRC retains an advantage in the reported dataset averages.
 
@@ -498,7 +496,7 @@ Joint rank calibration reduces the labels required to preserve a fixed calibrati
 
 
 \backmatter
-\par\noindent\begin{minipage}{\columnwidth}
+\par\addvspace{10pt}\noindent\begin{minipage}{\columnwidth}
 \par\addvspace{10pt}\noindent\begin{minipage}{\columnwidth}
 \section*{Data availability}
 The eight public datasets analyzed in this study are available from their original sources \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Frozen classifier predictions, evaluation tables and protocol records supporting the reported results are provided in Online Resource~1.

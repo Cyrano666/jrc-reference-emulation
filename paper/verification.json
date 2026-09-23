@@ -1,0 +1,19 @@
+{
+  "pages": 20,
+  "figures": 7,
+  "tables": 9,
+  "equations": 12,
+  "references": 36,
+  "all_table_and_equation_tex_identical": true,
+  "all_figure_sha256_identical": true,
+  "official_class_and_bst_identical": true,
+  "latex_warnings": [],
+  "bibtex_metadata_notes": {
+    "ovadia": "The official NeurIPS BibTeX record has an empty pages field; volume 32 and the publication URL are retained.",
+    "ilyas": "The ICML 2026 original-submission comparison is identified by the conference page; no unverified proceedings page range was inserted."
+  },
+  "fonts_embedded": true,
+  "all_results_before_discussion": true,
+  "pdf_sha256": "c0de7e192d23d23216af2940c27d2b3e835430bd8d7f0c36f458e1fa020c9375",
+  "status": "Narrative and template revision with frozen PAA evidence; current IJAR-specific guide could not be fetched (403)."
+}

@@ -27,7 +27,7 @@ Additional classifier dependencies are in revision6/requirements.txt. Training a
 | Table 1 | revision7/literature_comparison.md |
 | Table 2 | Dataset metadata and cited providers |
 | Table 3, Figures 2 and 5 | revision6/summaries/overview.csv |
-| Table 4, Figure 3 | revision6/summaries/failure_rates.csv and overview.csv |
+| Table 4, Figure 3 | revision6/summaries/failure_rates.csv, overview.csv and campaign_cells.csv (window-weighted extra size) |
 | Table 5 | revision6/results/predictions/*.json and model_summary.csv |
 | Table 6 | Main overview and failure summaries |
 | Table 7 | revision7/prior_full_summary.csv |
@@ -37,7 +37,7 @@ Additional classifier dependencies are in revision6/requirements.txt. Training a
 | Figure 7 | revision6/summaries/model_summary.csv |
 | Ambiguous trial exclusion | revision6/schema_sensitivity/ |
 
-Compile paper/latex/manuscript.tex with pdfLaTeX three times. The unmodified official Springer Nature class and bibliography style are included. The manuscript is an author-review draft, not an accepted publication.
+Compile paper/latex/manuscript.tex with pdfLaTeX, BibTeX and two further pdfLaTeX passes. The unmodified official Elsevier elsarticle class and elsarticle-num bibliography style are included. The manuscript is an author-review draft, not an accepted publication.
 
 ## Additional HHAR confirmation
 

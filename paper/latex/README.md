@@ -1,7 +1,18 @@
-# Pattern Analysis and Applications source
+# Elsevier LaTeX source
 
-Compile manuscript.tex with pdfLaTeX three times. All local figure files and the unchanged official Springer Nature class and bibliography style are included. Numbered references are self-contained in manuscript.tex. The author page and submission-system text are supplied separately.
+Compile manuscript.tex with pdfLaTeX, BibTeX, then pdfLaTeX twice.
 
-The class and style were verified byte-for-byte against the December 2024 official template package supplied by the authors. The journal-specific instructions take precedence over illustrative content in sn-article.pdf.
+    pdflatex manuscript
+    bibtex manuscript
+    pdflatex manuscript
+    pdflatex manuscript
 
-https://link.springer.com/journal/10044/submission-guidelines
+All files are at the ZIP root for Editorial Manager. The unmodified elsarticle
+class and elsarticle-num style come from Elsevier's official template package.
+The included .bbl supports systems that do not automatically run BibTeX.
+Use the TeX source as the editable manuscript and the PDF as its review preview.
+This package uses the PAA-submitted figures, tables, equations and results.
+
+Current IJAR-specific author instructions could not be fetched (HTTP 403).
+Review mode, file categories and journal-specific limits should be checked in
+the live IJAR submission system. This archive is an author-review version.

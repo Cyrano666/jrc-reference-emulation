@@ -1,0 +1,4 @@
+- Partial labels induce an enclosure of fixed reference prediction sets.
+- A finite-population rank recursion calibrates a declared query schedule.
+- An observable set-size tolerance determines when label acquisition stops.
+- Wearable benchmarks characterize label savings and reference preservation.

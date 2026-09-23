@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "Please cite the manuscript and specify the code version used."
-title: "Label-efficient emulation of conformal reference sets for wearable activity recognition"
+title: "Sequential reference preservation for label-efficient set-valued prediction"
 type: software
 authors:
   - family-names: Feng
@@ -12,4 +12,4 @@ authors:
     orcid: "https://orcid.org/0009-0009-9295-5149"
     affiliation: Xinjiang University
 repository-code: "https://github.com/Cyrano666/jrc-reference-emulation"
-version: submission-ready-2026-09-17
+version: ijar-narrative-2026-09-23

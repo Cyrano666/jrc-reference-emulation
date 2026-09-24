@@ -17,6 +17,34 @@ A.~N. Angelopoulos, S.~Bates, {Conformal prediction: A gentle introduction}, Fou
 L.~Cella, R.~Martin, Validity, consonant plausibility measures, and conformal prediction, International Journal of Approximate Reasoning 141 (2022) 110--130.
 \newblock \href {https://doi.org/10.1016/j.ijar.2021.07.013} {\path{doi:10.1016/j.ijar.2021.07.013}}.
 
+\bibitem{ilyas}
+A.~Ilyas, J.~Ko, J.~Tang, S.~Wu, J.~Zhang, \href{https://icml.cc/virtual/2026/poster/65796}{{Provably label-efficient conformal prediction}}, in: International Conference on Machine Learning, 2026, original-submission version consulted; conference page accessed 23 September 2026.
+\newline\urlprefix\url{https://icml.cc/virtual/2026/poster/65796}
+
+\bibitem{howard2021}
+S.~R. Howard, A.~Ramdas, J.~McAuliffe, J.~Sekhon, {Time-uniform, nonparametric, nonasymptotic confidence sequences}, Annals of Statistics 49~(2) (2021) 1055--1080.
+\newblock \href {https://doi.org/10.1214/20-AOS1991} {\path{doi:10.1214/20-AOS1991}}.
+
+\bibitem{howard2022}
+S.~R. Howard, A.~Ramdas, {Sequential estimation of quantiles with applications to A/B testing and best-arm identification}, Bernoulli 28~(3) (2022) 1704--1728.
+\newblock \href {https://doi.org/10.3150/21-BEJ1388} {\path{doi:10.3150/21-BEJ1388}}.
+
+\bibitem{wor}
+I.~Waudby-Smith, A.~Ramdas, \href{https://proceedings.neurips.cc/paper_files/paper/2020/file/e96c7de8f6390b1e6c71556e4e0a4959-Paper.pdf}{{Confidence sequences for sampling without replacement}}, in: Advances in Neural Information Processing Systems, Vol.~33, Curran Associates, Inc., 2020, pp. 20204--20214.
+\newline\urlprefix\url{https://proceedings.neurips.cc/paper_files/paper/2020/file/e96c7de8f6390b1e6c71556e4e0a4959-Paper.pdf}
+
+\bibitem{active2024}
+Z.~Xu, N.~Karampatziakis, P.~Mineiro, {Active, anytime-valid risk controlling prediction sets}, Advances in Neural Information Processing Systems 37 (2024) 60110--60132.
+\newblock \href {https://doi.org/10.52202/079017-1920} {\path{doi:10.52202/079017-1920}}.
+
+\bibitem{cochran}
+W.~G. Cochran, \href{https://www.wiley-vch.de/en/areas-interest/mathematics-statistics/sampling-techniques-978-0-471-16240-7}{{Sampling techniques}}, 3rd Edition, Wiley, New York, 1977.
+\newline\urlprefix\url{https://www.wiley-vch.de/en/areas-interest/mathematics-statistics/sampling-techniques-978-0-471-16240-7}
+
+\bibitem{jin}
+M.~Jin, J.~L. Kepner, {On sample size calculation for exact group sequential tests for rare disease}, International Journal of Clinical Biostatistics and Biometrics 3 (2017) 013.
+\newblock \href {https://doi.org/10.23937/2469-5831/1510013} {\path{doi:10.23937/2469-5831/1510013}}.
+
 \bibitem{guo}
 C.~Guo, G.~Pleiss, Y.~Sun, K.~Q. Weinberger, \href{https://proceedings.mlr.press/v70/guo17a.html}{{On calibration of modern neural networks}}, Proceedings of Machine Learning Research 70 (2017) 1321--1330.
 \newline\urlprefix\url{https://proceedings.mlr.press/v70/guo17a.html}
@@ -41,10 +69,6 @@ R.~Dunn, L.~Wasserman, A.~Ramdas, {Distribution-free prediction sets for two-lay
 R.~F. Barber, E.~J. Candes, A.~Ramdas, R.~J. Tibshirani, {Conformal prediction beyond exchangeability}, Annals of Statistics 51~(2) (2023) 816--845.
 \newblock \href {https://doi.org/10.1214/23-AOS2276} {\path{doi:10.1214/23-AOS2276}}.
 
-\bibitem{ilyas}
-A.~Ilyas, J.~Ko, J.~Tang, S.~Wu, J.~Zhang, \href{https://icml.cc/virtual/2026/poster/65796}{{Provably label-efficient conformal prediction}}, in: International Conference on Machine Learning, 2026.
-\newline\urlprefix\url{https://icml.cc/virtual/2026/poster/65796}
-
 \bibitem{vovk2012}
 V.~Vovk, \href{https://proceedings.mlr.press/v25/vovk12.html}{{Conditional validity of inductive conformal predictors}}, Proceedings of Machine Learning Research 25 (2012) 475--490.
 \newline\urlprefix\url{https://proceedings.mlr.press/v25/vovk12.html}
@@ -53,33 +77,10 @@ V.~Vovk, \href{https://proceedings.mlr.press/v25/vovk12.html}{{Conditional valid
 Z.~Liang, Y.~Zhou, M.~Sesia, \href{https://proceedings.mlr.press/v202/liang23i.html}{{Conformal inference is (almost) free for neural networks trained with early stopping}}, Proceedings of Machine Learning Research 202 (2023) 20810--20851.
 \newline\urlprefix\url{https://proceedings.mlr.press/v202/liang23i.html}
 
-\bibitem{active2024}
-Z.~Xu, N.~Karampatziakis, P.~Mineiro, {Active, anytime-valid risk controlling prediction sets}, Advances in Neural Information Processing Systems 37 (2024) 60110--60132.
-\newblock \href {https://doi.org/10.52202/079017-1920} {\path{doi:10.52202/079017-1920}}.
-
 \bibitem{skalse2026}
-J.~Skalse, E.~Pona, O.~Simeone, N.~Paoletti, \href{https://arxiv.org/abs/2608.07139v1}{{Online Conformal Prediction Beyond Feedback}}, arXiv:2608.07139v1 (2026).
+J.~Skalse, E.~Pona, O.~Simeone, N.~Paoletti, \href{https://arxiv.org/abs/2608.07139v1}{{Online Conformal Prediction Beyond Feedback}}, arXiv:2608.07139v1, preprint (2026).
+\newblock \href {https://doi.org/10.48550/arXiv.2608.07139} {\path{doi:10.48550/arXiv.2608.07139}}.
 \newline\urlprefix\url{https://arxiv.org/abs/2608.07139v1}
-
-\bibitem{howard2022}
-S.~R. Howard, A.~Ramdas, {Sequential estimation of quantiles with applications to A/B testing and best-arm identification}, Bernoulli 28~(3) (2022) 1704--1728.
-\newblock \href {https://doi.org/10.3150/21-BEJ1388} {\path{doi:10.3150/21-BEJ1388}}.
-
-\bibitem{wor}
-I.~Waudby-Smith, A.~Ramdas, \href{https://proceedings.neurips.cc/paper_files/paper/2020/file/e96c7de8f6390b1e6c71556e4e0a4959-Paper.pdf}{{Confidence sequences for sampling without replacement}}, in: Advances in Neural Information Processing Systems, Vol.~33, Curran Associates, Inc., 2020, pp. 20204--20214.
-\newline\urlprefix\url{https://proceedings.neurips.cc/paper_files/paper/2020/file/e96c7de8f6390b1e6c71556e4e0a4959-Paper.pdf}
-
-\bibitem{cochran}
-W.~G. Cochran, \href{https://www.wiley-vch.de/en/areas-interest/mathematics-statistics/sampling-techniques-978-0-471-16240-7}{{Sampling techniques}}, 3rd Edition, Wiley, New York, 1977.
-\newline\urlprefix\url{https://www.wiley-vch.de/en/areas-interest/mathematics-statistics/sampling-techniques-978-0-471-16240-7}
-
-\bibitem{howard2021}
-S.~R. Howard, A.~Ramdas, J.~McAuliffe, J.~Sekhon, {Time-uniform, nonparametric, nonasymptotic confidence sequences}, Annals of Statistics 49~(2) (2021) 1055--1080.
-\newblock \href {https://doi.org/10.1214/20-AOS1991} {\path{doi:10.1214/20-AOS1991}}.
-
-\bibitem{jin}
-M.~Jin, J.~L. Kepner, {On sample size calculation for exact group sequential tests for rare disease}, International Journal of Clinical Biostatistics and Biometrics 3 (2017) 013.
-\newblock \href {https://doi.org/10.23937/2469-5831/1510013} {\path{doi:10.23937/2469-5831/1510013}}.
 
 \bibitem{stfal}
 R.~Huan, Y.~Zhou, G.~Dong, P.~Chen, R.~Liang, C.~Chen, {STF-AL: spatiotemporal-frequency feature representation and adversarial learning for sensor-based cross-domain human activity recognition}, Pattern Analysis and Applications 29 (2026) 173.
@@ -110,27 +111,27 @@ H.~Ismail~Fawaz, B.~Lucas, G.~Forestier, C.~Pelletier, D.~F. Schmidt, J.~Weber, 
 \newblock \href {https://doi.org/10.1007/s10618-020-00710-y} {\path{doi:10.1007/s10618-020-00710-y}}.
 
 \bibitem{har}
-J.~Reyes-Ortiz, D.~Anguita, {Human activity recognition using smartphones}, UCI Machine Learning Repository, dataset (2013).
+J.~Reyes-Ortiz, D.~Anguita, {Human activity recognition using smartphones}, UCI Machine Learning Repository, data record (2013).
 \newblock \href {https://doi.org/10.24432/C54S4K} {\path{doi:10.24432/C54S4K}}.
 
 \bibitem{dsads}
-B.~Barshan, K.~Altun, {Daily and sports activities}, UCI Machine Learning Repository, dataset (2010).
+B.~Barshan, K.~Altun, {Daily and sports activities}, UCI Machine Learning Repository, data record (2010).
 \newblock \href {https://doi.org/10.24432/C5C59F} {\path{doi:10.24432/C5C59F}}.
 
 \bibitem{mhealth}
-O.~Banos, R.~Garcia, {MHEALTH}, UCI Machine Learning Repository, dataset (2014).
+O.~Banos, R.~Garcia, {MHEALTH}, UCI Machine Learning Repository, data record (2014).
 \newblock \href {https://doi.org/10.24432/C5TW22} {\path{doi:10.24432/C5TW22}}.
 
 \bibitem{wisdm}
-G.~Weiss, {WISDM Smartphone and Smartwatch Activity and Biometrics Dataset}, UCI Machine Learning Repository, dataset (2019).
+G.~Weiss, {WISDM Smartphone and Smartwatch Activity and Biometrics Dataset}, UCI Machine Learning Repository, data record (2019).
 \newblock \href {https://doi.org/10.24432/C5HK59} {\path{doi:10.24432/C5HK59}}.
 
 \bibitem{pamap}
-A.~Reiss, {PAMAP2 Physical Activity Monitoring}, UCI Machine Learning Repository, dataset (2012).
+A.~Reiss, {PAMAP2 Physical Activity Monitoring}, UCI Machine Learning Repository, data record (2012).
 \newblock \href {https://doi.org/10.24432/C5NW2H} {\path{doi:10.24432/C5NW2H}}.
 
 \bibitem{realdisp}
-O.~Banos, M.~Toth, O.~Amft, {REALDISP Activity Recognition Dataset}, UCI Machine Learning Repository, dataset (2012).
+O.~Banos, M.~Toth, O.~Amft, {REALDISP Activity Recognition Dataset}, UCI Machine Learning Repository, data record (2012).
 \newblock \href {https://doi.org/10.24432/C5GP6D} {\path{doi:10.24432/C5GP6D}}.
 
 \bibitem{uschad}
@@ -147,7 +148,11 @@ P.~Virtanen, R.~Gommers, T.~E. Oliphant, et~al., {SciPy 1.0: fundamental algorit
 \newblock \href {https://doi.org/10.1038/s41592-019-0686-2} {\path{doi:10.1038/s41592-019-0686-2}}.
 
 \bibitem{hhar}
-H.~Blunck, S.~Bhattacharya, T.~Prentow, M.~Kjaergaard, A.~Dey, {Heterogeneity activity recognition}, UCI Machine Learning Repository, dataset (2015).
+H.~Blunck, S.~Bhattacharya, T.~Prentow, M.~Kjaergaard, A.~Dey, {Heterogeneity activity recognition}, UCI Machine Learning Repository, data record (2015).
 \newblock \href {https://doi.org/10.24432/C5689X} {\path{doi:10.24432/C5689X}}.
+
+\bibitem{jrcdata}
+X.~Feng, D.~Yang, \href{https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/submission-ready-2026-09-17}{{JRC reference-emulation reproducibility archive}}, GitHub, version submission-ready-2026-09-17; archive ESM\_1.zip; accessed 23 September 2026 (2026).
+\newline\urlprefix\url{https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/submission-ready-2026-09-17}
 
 \end{thebibliography}

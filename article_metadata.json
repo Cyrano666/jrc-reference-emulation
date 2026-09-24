@@ -1,7 +1,7 @@
 {
   "title": "Sequential reference preservation for label-efficient set-valued prediction",
   "target_journal": "International Journal of Approximate Reasoning",
-  "status": "Unpublished author-review narrative revision",
+  "status": "Unpublished author-review manuscript; official guide checked with remaining author actions",
   "main_classifier_cases": 354,
   "additional_hhar_cases": 45,
   "additional_protocol_commit": "4cf2155",
@@ -22,5 +22,7 @@
     }
   ],
   "data_basis": "submission-ready-2026-09-17",
-  "version": "ijar-narrative-2026-09-23"
+  "version": "ijar-guide-checked-2026-09-24",
+  "review_model": "single anonymized",
+  "guide_checked": true
 }

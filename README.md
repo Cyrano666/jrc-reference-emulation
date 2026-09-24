@@ -45,4 +45,4 @@ The artifact download remains pinned to the original approximately 350 MB scient
 | revision/, revision5/ | Shared models, preprocessing and earlier study evidence |
 | docs/ | Reproduction, data provenance and revision notes |
 
-Directory names are retained because imports and protocol hashes depend on them. This branch adds no new experiments. Current journal-specific instructions could not be fetched (HTTP 403); the review manuscript uses Elsevier's official class and numerical bibliography style. Submission and editorial assessment remain separate from this repository revision.
+Directory names are retained because imports and protocol hashes depend on them. This branch adds no new experiments. The full official Guide for Authors was checked from the user-supplied saved webpage. See docs/IJAR_GUIDE_CHECK_20260923.md for completed checks and remaining author actions. The manuscript uses Elsevier's official class and numerical bibliography style. Submission and editorial assessment remain separate from this repository revision.

@@ -1,19 +1,29 @@
 {
   "pages": 20,
+  "abstract_words": 223,
+  "keywords": 6,
   "figures": 7,
   "tables": 9,
   "equations": 12,
-  "references": 36,
-  "all_table_and_equation_tex_identical": true,
-  "all_figure_sha256_identical": true,
-  "official_class_and_bst_identical": true,
-  "latex_warnings": [],
-  "bibtex_metadata_notes": {
-    "ovadia": "The official NeurIPS BibTeX record has an empty pages field; volume 32 and the publication URL are retained.",
-    "ilyas": "The ICML 2026 original-submission comparison is identified by the conference page; no unverified proceedings page range was inserted."
-  },
-  "fonts_embedded": true,
+  "references": 37,
+  "all_original_figures_tables_equations_preserved": true,
+  "all_fonts_embedded": true,
   "all_results_before_discussion": true,
-  "pdf_sha256": "c0de7e192d23d23216af2940c27d2b3e835430bd8d7f0c36f458e1fa020c9375",
-  "status": "Narrative and template revision with frozen PAA evidence; current IJAR-specific guide could not be fetched (403)."
+  "latex_warnings": [],
+  "dataset_markers": 8,
+  "word_documents_pages": {
+    "Cover_letter_draft": 1,
+    "Declaration_of_interest_draft": 1,
+    "Highlights": 1,
+    "Title_Page_and_Declarations": 1
+  },
+  "review_model": "single anonymized",
+  "guide_source": "User-supplied saved official HTML",
+  "guide_sha256": "42944b56463c38c73a161ad7c4c4d8cd5a8e31d0473860f1785f055867d5153b",
+  "pdf_sha256": "785fecccb3a78d98a66407775ec54e4113dc15fce38492ee981ca87a26bae568",
+  "remaining": [
+    "Corresponding author must complete the official declaration tool (email OTP) and upload its exported DOCX.",
+    "GitHub versioned numerical archive is cited; long-term repository DOI deposition or journal acceptance of the existing repository remains to be confirmed.",
+    "Final author review and author-managed submission statements."
+  ]
 }

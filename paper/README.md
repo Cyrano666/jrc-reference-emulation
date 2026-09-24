@@ -1,3 +1,9 @@
-# IJAR review manuscript
+# IJAR author-review manuscript
 
-The PDF and LaTeX source present the narrative revision with original PAA numerical evidence. Compile using pdfLaTeX, BibTeX and two further pdfLaTeX passes. Highlights and the cover letter are editable author-review drafts. The class is Elsevier's unmodified elsarticle; the bibliography style is elsarticle-num. Journal-specific requirements remain subject to the live Guide for Authors.
+The official saved Guide for Authors has been checked. The manuscript uses
+single-anonymized review formatting, retains author identities and includes
+the full affiliation address. Editable source is under latex/. Use pdfLaTeX,
+BibTeX and two further pdfLaTeX passes. Separate Highlights and cover-letter
+Word files are supplied. Declaration_of_interest_draft.docx is prepared text,
+not an export from the official declaration tool. Author actions and the data
+repository check are listed in docs/IJAR_GUIDE_CHECK_20260923.md.

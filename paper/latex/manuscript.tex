@@ -6,6 +6,9 @@
 \usepackage{algorithm,algpseudocode,xurl,hyperref}
 \hypersetup{hidelinks,pdftitle={Sequential reference preservation for label-efficient set-valued prediction},pdfauthor={Xin Feng; Decong Yang}}
 \biboptions{numbers,sort&compress}
+\renewcommand{\bibfont}{\small}
+\setlength{\bibsep}{3pt}
+\renewcommand{\bibpreamble}{\interlinepenalty=10000}
 \newcommand{\botrule}{\bottomrule}
 \makeatletter
 \newcommand{\raggedtablecolumns}{\let\savedarrayrestore\@arrayparboxrestore\def\@arrayparboxrestore{\savedarrayrestore\raggedright\arraybackslash}}
@@ -18,39 +21,53 @@
 \emergencystretch=2em
 \raggedbottom
 \journal{International Journal of Approximate Reasoning}
+\newcommand{\markdataset}[1]{\expandafter\def\csname dataset@#1\endcsname{}}
+\let\originalbibitem\bibitem
+\RenewDocumentCommand{\bibitem}{o m}{%
+  \IfNoValueTF{#1}{\originalbibitem{#2}}{\originalbibitem[#1]{#2}}%
+  \ifcsname dataset@#2\endcsname [dataset]\space\fi}
+\markdataset{har}
+\markdataset{dsads}
+\markdataset{mhealth}
+\markdataset{wisdm}
+\markdataset{pamap}
+\markdataset{realdisp}
+\markdataset{hhar}
+\markdataset{jrcdata}
+
 \begin{document}
 \begin{frontmatter}
 \title{Sequential reference preservation for label-efficient set-valued prediction}
 \author[aff1]{Xin Feng\fnref{orf}}
 \author[aff1]{Decong Yang\corref{cor1}\fnref{ory}}
 \ead{20232501525@stu.xju.edu.cn}
-\affiliation[aff1]{organization={Xinjiang University},city={Urumqi},country={China}}
+\affiliation[aff1]{organization={Xinjiang University},addressline={Youhao Campus, 499 Xibei Road, Shayibake District},city={Urumqi},postcode={830091},state={Xinjiang},country={China}}
 \cortext[cor1]{Corresponding author}
 \fntext[orf]{ORCID: \url{https://orcid.org/0009-0008-3242-7961}}
 \fntext[ory]{ORCID: \url{https://orcid.org/0009-0009-9295-5149}}
 \begin{abstract}
-Set-valued prediction supports decisions when several outcomes remain plausible, but acquiring the labels required for calibration can be costly. We study sequential label acquisition relative to a fixed finite reference predictor. Partial labels induce an interval for the reference quantile and a corresponding enclosure of nested prediction sets. We develop an acquisition procedure that refines this enclosure using finite-population rank bounds and stops when its mean set-size difference on an unlabeled monitoring batch reaches a prescribed tolerance. Joint rank calibration (JRC) uses a rank-state recursion to calibrate both boundaries over the declared query checkpoints. Under uniform sampling without replacement, the resulting confidence event preserves the reference sets for every input and bounds their average enlargement on the monitoring batch. Boundary tables are computed before querying and reused across pools with the same design. The evaluation comprises 354 classifier cases on seven public wearable datasets and 45 additional HHAR cases. At confidence error 0.05 and tolerance 0.5, JRC saves 23.67\% of reference labels on USC-HAD, compared with 17.91\% for Bonferroni hypergeometric bounds and 11.74\% for a uniform-prior confidence sequence. The strongest reported prior variant reaches 15.33\%. On HHAR, savings are 34.03\% for JRC and 25.13\% for the fixed Beta$(9,1)$ comparator. These results characterize the relation between acquisition effort, rank uncertainty and the precision of set-valued decisions.
+Calibration can require more labels than are needed to reproduce a set-valued predictor's decisions. We introduce a sequential reference-preservation procedure that acquires labels until it can retain the prediction sets of a fully labeled reference pool within a prescribed size tolerance. Joint rank calibration (JRC) calibrates hypergeometric quantile bounds over the complete query schedule. A rank count tracks sampled items below the reference rank, and an inclusion indicator records whether the reference-ranked item has appeared. Propagating their joint state evaluates crossings of both quantile boundaries on the same query path. The endpoint sets then turn quantile uncertainty into an observable cardinality difference on an unlabeled monitoring batch. Querying stops when this difference meets the tolerance. Under uniform sampling without replacement, one confidence event guarantees reference-set containment for every input and bounds mean enlargement on the monitoring batch. Evaluation uses 354 classifier cases on seven wearable datasets and 45 additional cases on Heterogeneity Human Activity Recognition (HHAR). At confidence error 0.05 and tolerance 0.5, JRC saves 23.67\% of reference labels on the University of Southern California Human Activity Dataset (USC-HAD), compared with 17.91\% for Bonferroni hypergeometric bounds, 11.74\% for a uniform-prior confidence sequence and 15.33\% for its strongest reported prior variant. HHAR savings reach 34.03\%, against 25.13\% for the fixed Beta$(9,1)$ comparator. The procedure makes prediction-set precision an operational criterion for allocating calibration labels.
 \end{abstract}
 \begin{keyword}
 Set-valued prediction \sep Reference preservation \sep Sequential calibration \sep Finite-population inference \sep Label acquisition \sep Conformal prediction
 \end{keyword}
 \end{frontmatter}
 \section{Introduction}
-Set-valued prediction represents uncertainty by retaining several admissible outcomes for a decision. Its usefulness depends on both inferential reliability and the precision of the returned set. Conformal prediction provides a framework for constructing prediction sets with statistical validity \cite{vovk,angelopoulos}, and its connections with consonant plausibility measures link this framework to broader approaches to uncertain reasoning \cite{cella2022}. Acquiring the labels needed to construct a prediction set can itself be costly. This raises a decision problem: how much calibration information is needed before further labeling has little effect on the prediction sets of interest?
+A prediction set represents uncertainty through the outcomes it retains. Conformal methods provide statistical validity for such sets \cite{vovk,angelopoulos}, with links to broader uncertainty representations \cite{cella2022}. Constructing the calibration reference can nevertheless require substantial labeling. We study a concrete acquisition question: how many labels are needed to preserve the prediction sets that a fully labeled reference pool would produce, while allowing only a specified average enlargement? This target makes the precision of the returned sets part of the acquisition decision.
 
-We study this problem relative to a fixed calibration reference. A trained classifier, a finite pool of inputs and a score function define the prediction sets that would be obtained after labeling the entire pool. During acquisition, the labels are revealed sequentially, so the reference quantile is only partially known. Bounds on that quantile induce lower and upper prediction sets. Their inclusion relation describes what is already determined and what remains unresolved about the reference decision.
+The reference-preservation objective distinguishes the present task from three related lines of work. Ilyas et al.\ \cite{ilyas} optimize a cost combining acquired labels and prediction-set size under an i.i.d. model; our objective is to reproduce a fixed finite reference within a set-size tolerance. Confidence sequences \cite{howard2021,howard2022,wor} provide intervals valid across sampling times; here, endpoint prediction sets turn an interval into a task-specific stopping rule. Active risk-controlling prediction sets \cite{active2024} guide label acquisition toward a prediction-risk constraint; we require retention of the reference sets and control their additional candidate labels. These distinct targets determine both the stopping criterion and the guarantee being evaluated.
 
-Our acquisition procedure refines this set enclosure until its remaining imprecision reaches a specified tolerance. Before querying, a finite-population rank recursion calibrates the quantile boundaries across the declared checkpoints. At each checkpoint, candidate-label scores on an unlabeled monitoring batch translate the threshold interval into a mean difference in set size. Querying stops when this difference is sufficiently small, and the procedure returns the upper-endpoint sets. The resulting confidence event simultaneously preserves the reference sets for every input and controls their average enlargement on the monitoring batch.
+We develop joint rank calibration (JRC) as a reference-preserving acquisition procedure. Its construction combines finite-population rank inference with exact calibration over a declared query schedule \cite{cochran,jin}. A fixed classifier and score function define the reference quantile. Sequential label queries narrow its interval, and candidate-label scores on an unlabeled monitoring batch translate the endpoints into nested prediction sets. The mean cardinality difference measures the prediction choices that remain unresolved by the queried labels. Acquisition stops when this observable difference reaches the user's tolerance and returns the upper-endpoint sets.
 
-The method connects two quantities with different roles: a probability budget for errors in reference preservation and a cardinality budget for the additional candidate labels. The cardinality criterion expresses precision in the space of decisions. It is invariant to strictly increasing score transformations and can be evaluated without monitoring labels. We implement the procedure using joint rank calibration (JRC), with boundary tables that depend on the finite query design and can be reused across reference pools.
+The rank-state representation connects the two quantile boundaries to the same query path. One state component counts queried items ranked below the reference quantile; the other records whether the reference-ranked item has appeared. The lower boundary depends on their sum, while the upper boundary depends on the count alone. Propagating this state evaluates the probability of crossing either boundary over the declared checkpoints. This yields a calibrated interval family that can be reused across pools with the same design. The method's contribution is the resulting acquisition procedure: schedule-specific calibration supplies the confidence event, and prediction-set width supplies the stopping decision.
 
 The contributions are:
 \begin{enumerate}
-\item A sequential reference-preservation formulation that expresses acquisition uncertainty through nested prediction sets and a mean set-size tolerance.
-\item A finite-checkpoint rank-calibration procedure and an observable stopping rule, with a joint containment and inflation guarantee under the specified query design.
-\item An empirical characterization on seven public wearable datasets with 354 classifier cases and an additional HHAR evaluation with 45 cases, relating label cost to boundary construction, reference-set quality and stopping tolerance.
+\item A reference-preservation acquisition objective that couples containment of the complete-reference prediction sets with a bound on their average enlargement.
+\item A computable calibration-and-stopping procedure that turns partial reference labels and unlabeled monitoring scores into an adaptive query count, with a joint containment and size guarantee under uniform sampling without replacement.
+\item An evaluation on seven wearable datasets with 354 frozen classifier cases and an additional HHAR study with 45 cases, quantifying label savings, reference quality and the effects of the stopping tolerance and boundary construction.
 \end{enumerate}
-Wearable activity recognition provides the application setting: repeated measurements, user heterogeneity and imperfect probability calibration make the precision of prediction sets consequential \cite{guo,ovadia}. The reported USC-HAD comparison yields 23.67\% reference-label savings for JRC, 17.91\% for Bonferroni hypergeometric bounds and 11.74\% for the uniform-prior confidence sequence. The prior sensitivity and additional HHAR study characterize how these results depend on the comparator and reference design.
+The formulation connects a probability budget for reference loss to a cardinality budget for additional candidate labels. The latter has a direct interpretation in decision space and is invariant to strictly increasing score transformations. Wearable activity recognition provides an application in which user heterogeneity and imperfect probability calibration make set precision consequential \cite{guo,ovadia}. The experiments compare JRC with Bonferroni hypergeometric bounds and the stated anytime-valid confidence-sequence variants under a common reference-pool and query protocol.
 
 \section{Related work}
 \subsection{Set-valued prediction and uncertainty representation}
@@ -290,7 +307,7 @@ Test inputs supply the monitoring scores, with true labels hidden during acquisi
 \subsection{Metrics, uncertainty and ablations}
 Primary outcomes are queried-label savings $1-T/N$, reference-set containment failure and batch size inflation. A containment failure is the conservative scalar event $\overline U_T<q_{\rm ref}$; with ties or gaps in candidate scores, this can flag a threshold failure even when no observed test set loses a label. Bracket failure checks both endpoints. Size failure checks whether actual mean extra labels on the monitoring batch exceed $\tau$. Each query campaign is counted once, regardless of the number of held-out people.
 
-For a test participant with empirical coverage $c_u$, positive shortfall is $(0.9-c_u)_+$. The positive part is calculated before averaging randomizations. Accuracy and macro-F1 describe the frozen point classifiers. Macro-F1 includes all activity classes, with zero contribution for undefined class scores. Subject summaries average paired randomizations and repeated partitions; paired 95\% bootstrap intervals resample these summaries within each dataset. The intervals therefore describe participant variation conditional on the fitted models and partitions.
+For a test participant with empirical coverage $c_u$, positive shortfall is $(0.9-c_u)_+$. The positive part is calculated before averaging randomizations. Accuracy and macro-F1 describe the frozen point classifiers. Macro-F1 includes all activity classes, with zero contribution for undefined class scores. Subject summaries average paired randomizations and repeated partitions; paired 95\% bootstrap intervals resample these summaries within each dataset. The intervals therefore describe participant variation conditional on the fitted models and partitions. Sex and gender were not used for modeling or stratification, and performance within sex or gender groups was not assessed.
 
 JRC, Bonferroni HG and the confidence sequence based on the prior-posterior ratio use identical tolerances and query checkpoints. Ablations remove the running intersection, use a sparse checkpoint grid, omit repeated-look correction or return the midpoint at the proposed stopping time. The uncorrected and midpoint variants serve as diagnostic controls. Fixed fractions and a one-look HG rule provide additional label-cost and set-size trade-offs. Exploratory checks vary $\delta$ and compare monitoring on even-indexed inputs with evaluation on odd-indexed inputs in the first MR case of each development dataset.
 
@@ -509,19 +526,19 @@ Sequential reference preservation provides an acquisition target for set-valued 
 \textbf{Xin Feng:} Conceptualization, Methodology, Software, Data curation, Formal analysis, Investigation, Writing -- original draft. \textbf{Decong Yang:} Visualization, Writing -- review and editing.
 
 \section*{Declaration of competing interest}
-The authors declare no competing interests relevant to this study.
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 \section*{Funding}
-No specific funding was received for this study.
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
 \section*{Ethics and consent}
 This study analyzes existing public benchmark data and involved no new participant recruitment or intervention.
 
 \section*{Data availability}
-The eight public datasets are available from the cited providers \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Supplementary material 1 contains the frozen predictions, result tables, protocols and verification records for the reported experiments.
+The eight source datasets are available from the cited providers \cite{har,dsads,mhealth,wisdm,pamap,realdisp,uschad,hhar}. Frozen model predictions, query-campaign records, evaluation tables and protocols are publicly available in the versioned reproducibility archive \cite{jrcdata}. Supplementary material 1 contains the same scientific records together with verification results and reproduction instructions.
 
 \section*{Code availability}
-Code and reproduction instructions are available at \url{https://github.com/Cyrano666/jrc-reference-emulation}. The accompanying archive preserves the reported study version.
+Code and reproduction instructions are available at \url{https://github.com/Cyrano666/jrc-reference-emulation}. The reported experiments use the archived implementation accompanying the frozen numerical records \cite{jrcdata}.
 
 \section*{Supplementary material}
 Supplementary material 1: reproduction code, frozen predictions, evaluation tables, protocols, verification records and editable figure sources.

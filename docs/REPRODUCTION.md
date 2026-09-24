@@ -1,44 +1,46 @@
-# Reproduce the study
+# Reproduction guide
 
-Use Python 3.12 and install the root requirements.txt. Download the checksum-verified Online Resource 1 with `python get_artifacts.py`. A local copy can be installed with `python get_artifacts.py --archive PATH_TO_ZIP`. Existing files are retained when their bytes match; conflicting files stop extraction for review.
+Install requirements.txt with Python 3.12. Run `python get_artifacts.py`, or install a downloaded archive with `python get_artifacts.py --archive PATH_TO_ZIP`. The installer verifies every record before writing and stops on conflicting existing numerical files.
 
-## Acquisition from saved probabilities
+| Command | Purpose |
+|---|---|
+| `python boundary_demo.py --pool-size 240` | Construct boundaries and independently recompute crossing probability |
+| `python reproduce.py --smoke` | Replay one complete main case and compare frozen rows |
+| `python reproduce.py` | Replay all 354 cases and compare the overview |
+| `python confirmation_hhar/reproduce.py --smoke` | Compare one HHAR case, including campaign rows |
+| `python confirmation_hhar/reproduce.py` | Replay all 45 HHAR cases |
+| `python revision7/prior_audit.py --full` | Recompute all four original confidence-sequence priors |
+| `python visualization/rebuild_figures.py` | Regenerate quantitative Figures 2-7 |
+| `python audits/baseline_definition.py` | Recompute one-look ranks and window-weighted enlargement |
 
-Boundary tables do not require labels or a dataset. Run `python boundary_demo.py --pool-size 240` to construct the declared rank bounds and independently recompute their joint crossing probability. The functions are `calibrated_brackets` (boundary-table construction) and `crossing_probability` (joint absorbing recursion) in `revision6/horizon.py`. The sequence and stopping implementation is `revision6/sequential.py`.
+Use `python revision6/reproduce.py --resume --output PATH` to resume a main replay. Replays condition on frozen models and partitions and are not new confirmation experiments.
 
-The artifact installer preserves newer paper/figure/documentation files in the checkout. Frozen numerical files and the locked implementation still must match the release; it stops on conflicting numerical evidence rather than overwriting it.
+## Implementation checks
 
-- `python reproduce.py --smoke`: one complete case, compared with frozen rows.
-- `python reproduce.py`: all 354 cases and the aggregate tables.
-- `python revision6/reproduce.py --resume --output PATH`: resume a timestamped output directory.
-- `python revision7/prior_audit.py --full`: reconstruct the subsequent four-prior diagnostic.
-- `python visualization/rebuild_figures.py`: reconstruct quantitative figures; the editable architecture is supplied under figures/.
-
-Reproductions create timestamped output directories and preserve the locked reference results. These commands do not fit new classifiers and do not establish an independent confirmation experiment.
+Run revision6/test_horizon.py for exhaustive small-population recursion checks, revision6/test_sequential.py for interval/stopping checks, and revision6/check_oracle.py for unqueried-label invariance. These scripts write check reports: use an isolated checkout. Original hashes are recorded in revision6/protocol_lock.json and confirmation_hhar/protocol_lock.json.
 
 ## Refitting
 
-Additional classifier dependencies are in revision6/requirements.txt. Training and preprocessing scripts are provided under revision/, revision5/ and revision6/. Obtain the original signals from their providers as described in docs/DATA.md. Raw USC-HAD signals are not redistributed. The supplied original classifier implementation used an RTX 4070 Laptop GPU and the pinned CUDA-enabled training environment; CPU timing is not comparable. Use a separate working copy for refits, because training scripts cache completed cases.
+Install revision6/requirements.txt and obtain original signals from the providers in DATA.md. The declared InceptionTime-style fitting needs CUDA; saved-probability replay does not. Use a separate copy because training scripts cache cases.
 
-## Evidence map
+- revision/prepare_v2.py and train_v2.py: first-four-dataset preparation and original fits.
+- revision5/download_confirmation.py, prepare_confirmation.py and train_models.py: PAMAP2/REALDISP preparation and shared model fits.
+- revision6/download_uschad.py, prepare_uschad.py and train_confirmation.py: USC-HAD preparation and fitting.
+- confirmation_hhar/prepare.py and train.py: the additional cohort.
 
-| Manuscript item | Frozen source |
+Raw signal archives and preprocessing caches are not required for acquisition replay and are not bundled. Model refitting requires the original inputs; hardware-dependent timings may differ.
+
+## Numerical source map
+
+| Result | Source |
 |---|---|
-| Table 1 | revision7/literature_comparison.md |
-| Table 2 | Dataset metadata and cited providers |
-| Table 3, Figures 2 and 5 | revision6/summaries/overview.csv |
-| Table 4, Figure 3 | revision6/summaries/failure_rates.csv, overview.csv and campaign_cells.csv (window-weighted extra size) |
-| Table 5 | revision6/results/predictions/*.json and model_summary.csv |
-| Table 6 | Main overview and failure summaries |
-| Table 7 | revision7/prior_full_summary.csv |
-| Table 8 | revision6/runtime.csv |
-| Figure 4 | revision6/summaries/paired_intervals.csv |
-| Figure 6 | revision6/results/predictions/uschad_0_0_MR.npz |
-| Figure 7 | revision6/summaries/model_summary.csv |
-| Ambiguous trial exclusion | revision6/schema_sensitivity/ |
-
-Compile paper/latex/manuscript.tex with pdfLaTeX, BibTeX and two further pdfLaTeX passes. The unmodified official Elsevier elsarticle class and elsarticle-num bibliography style are included. The manuscript is an author-review draft, not an accepted publication.
-
-## Additional HHAR confirmation
-
-`python confirmation_hhar/reproduce.py --smoke` checks one additional case; omit `--smoke` for all45. Protocol and implementation: confirmation_hhar/protocol.json, prepare.py, train.py, evaluate.py and analyze.py. Table9 and its paired intervals come from confirmation_hhar/summaries/.
+| Acquisition savings and set utility | revision6/summaries/overview.csv |
+| Failures | revision6/summaries/failure_rates.csv |
+| Window-weighted enlargement | revision6/summaries/campaign_cells.csv |
+| Paired participant intervals | revision6/summaries/paired_intervals.csv |
+| Classifier outcomes | revision6/summaries/model_summary.csv and prediction metadata |
+| Prior diagnostic | revision7/prior_full_summary.csv |
+| Timings | revision6/runtime.csv |
+| Declared trace | revision6/results/predictions/uschad_0_0_MR.npz |
+| Trial-label sensitivity | revision6/schema_sensitivity/ |
+| HHAR | confirmation_hhar/summaries/ |

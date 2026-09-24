@@ -73,9 +73,6 @@ low=5*np.floor(min(np.min(c.get_offsets()) for c in axs[1].collections)/5)
 axs[1].plot([low,100],[low,100],':',color='gray',lw=1);axs[1].set_xlim(low,100);axs[1].set_ylim(low,100);axs[1].set_xlabel('Full-reference coverage (%)');axs[1].set_ylabel('Returned-set coverage (%)')
 for i,ax in enumerate(axs):panel(ax,i)
 save(fig,7)
-if not (OUT/'Fig1.pdf').exists():
- source=next(p for p in [V6/'Fig1.pdf',W.parent/'figures/Fig1.pdf'] if p.exists())
- shutil.copy2(source,OUT/'Fig1.pdf')
 audit=[]
 for p in sorted(OUT.glob('Fig*.pdf')):
  d=pymupdf.open(p);factor=174/25.4*72/d[0].rect.width;spans=[s for b in d[0].get_text('dict')['blocks'] if 'lines' in b for l in b['lines'] for s in l['spans'] if s['text'].strip()]

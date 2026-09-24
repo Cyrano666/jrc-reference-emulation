@@ -21,3 +21,11 @@ revision6/summaries/per_person.csv
 *.log
 *.out
 *.synctex.gz
+
+# Generated outputs
+figures/
+revision7/figures/
+verification_runs/
+visualization/plotted_values.json
+visualization/plot_check.json
+revision7/figure_audit_after.json

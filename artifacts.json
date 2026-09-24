@@ -1,6 +1,6 @@
 {
-  "version": "submission-ready-2026-09-17",
-  "url": "https://github.com/Cyrano666/jrc-reference-emulation/releases/download/submission-ready-2026-09-17/ESM_1.zip",
-  "sha256": "bd9a28069defb3fafde4de9f8c3b1454759caa7cd647668384ff6dfafcba5270",
-  "bytes": 349273396
+  "version": "reproducibility-2026-09-24",
+  "url": "https://github.com/Cyrano666/jrc-reference-emulation/releases/download/reproducibility-2026-09-24/frozen_artifacts.zip",
+  "sha256": "7b0d2e2c17804ee91bb3323080ba9af87387d68aa00a8311af8595a842301da8",
+  "bytes": 318570496
 }

@@ -1,15 +1,11 @@
 cff-version: 1.2.0
-message: "Please cite the manuscript and specify the code version used."
-title: "Sequential reference preservation for label-efficient set-valued prediction"
+message: "Please cite the software and specify the experiment version used."
+title: "JRC reference-emulation experiments"
 type: software
 authors:
   - family-names: Feng
     given-names: Xin
-    orcid: "https://orcid.org/0009-0008-3242-7961"
-    affiliation: Xinjiang University
   - family-names: Yang
     given-names: Decong
-    orcid: "https://orcid.org/0009-0009-9295-5149"
-    affiliation: Xinjiang University
 repository-code: "https://github.com/Cyrano666/jrc-reference-emulation"
-version: ijar-guide-checked-2026-09-24
+version: reproducibility-2026-09-24

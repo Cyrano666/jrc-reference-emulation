@@ -11,18 +11,18 @@
   },
   {
     "path": "CITATION.cff",
-    "bytes": 604,
-    "sha256": "69ddba7040e43a686ec51d140de93bb18acf96fd160684410b8f839245686689"
+    "bytes": 591,
+    "sha256": "1fabb7052d7daee9efb9db74bc9c72ab7883ffb92d77aef99afd1e28272865a6"
   },
   {
     "path": "ONLINE_RESOURCE_1.md",
-    "bytes": 1766,
-    "sha256": "a1ce1b8c769fd6e7776a4d13a6dbc7cb6f9b181533539fd6b2ad38d474ef5b9b"
+    "bytes": 1029,
+    "sha256": "d1fe64b70bb2546b07ba7e70f650c1d5b1d6b80c5544631c4a6613d57248c1ac"
   },
   {
     "path": "README.md",
-    "bytes": 6009,
-    "sha256": "1055d4ae688610edabd27d4108a785fe759fde7fde2854c1794d18b0255eaf96"
+    "bytes": 6193,
+    "sha256": "766c6888a62234239e0044e4a1a27d355fd0ad8fbfaf51ab8ffd39d110efde1a"
   },
   {
     "path": "audits/baseline_definition.json",
@@ -1291,13 +1291,13 @@
   },
   {
     "path": "docs/REPOSITORY_ORGANIZATION.md",
-    "bytes": 1006,
-    "sha256": "d8e0a4df33557cafa2071b4ff56630dd9cb35748bae658e7b13310b000bc3567"
+    "bytes": 1096,
+    "sha256": "dbe07b3426a1b0eef4795821370fd8bf30ce5043edec784c10969a34a16344b1"
   },
   {
     "path": "docs/REPRODUCTION.md",
-    "bytes": 3587,
-    "sha256": "d4ffa39932e2a7041d5e53678fee6f04b6483c71e406aa6a5b4a8e7c7f21bc72"
+    "bytes": 3362,
+    "sha256": "7a96d3c895c33223dc9b2c1b509b05a9494f99befe43da85b9e3c3d46b690568"
   },
   {
     "path": "figures/Fig1.pdf",
@@ -1411,8 +1411,8 @@
   },
   {
     "path": "get_artifacts.py",
-    "bytes": 3047,
-    "sha256": "1e5c232b115529bb5fc9163356a90db66bfd297b4631d32f8bff99fd8d3eacbf"
+    "bytes": 3014,
+    "sha256": "1bfce46d26a7d2f56d1a30eddb911468231a4d66d2f3246374bc18e3e81cf4ae"
   },
   {
     "path": "reproduce.py",

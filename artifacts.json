@@ -1,6 +1,6 @@
 {
-  "version": "ijar-submission-2026-09-24",
-  "url": "https://github.com/Cyrano666/jrc-reference-emulation/releases/download/ijar-submission-2026-09-24/ESM_1.zip",
-  "sha256": "1e3d788227edd6133d32114d7609c439f2dc3faee6c18f00a25b57c080d7832d",
-  "bytes": 348007295
+  "version": "ijar-submission-cleanup",
+  "url": "https://github.com/Cyrano666/jrc-reference-emulation/releases/download/ijar-submission-cleanup/frozen_artifacts.zip",
+  "sha256": "7b0d2e2c17804ee91bb3323080ba9af87387d68aa00a8311af8595a842301da8",
+  "bytes": 318570496
 }

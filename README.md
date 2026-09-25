@@ -4,7 +4,7 @@
 
 Research code and reproducibility materials accompanying the manuscript "Sequential reference preservation for label-efficient set-valued prediction," submitted to the International Journal of Approximate Reasoning. This public repository is a code, data and reproducibility archive, not a manuscript portal; the manuscript, title page and LaTeX source are handled through the journal submission system.
 
-**Current reproducibility archive:** [Online Resource 1 and all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/ijar-submission-2026-09-24). Earlier review releases are historical records.
+**Current reproducibility archive:** [IJAR submission cleanup release](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/ijar-submission-cleanup). Earlier review releases are historical records.
 
 The revision/, revision5/, revision6/ and revision7/ directories contain different shared, locked or diagnostic components. They are not interchangeable manuscript copies; retain their paths for reproducibility. See [repository organization](docs/REPOSITORY_ORGANIZATION.md).
 
@@ -46,7 +46,7 @@ python get_artifacts.py
 python reproduce.py --smoke
 ```
 
-The artifact download is approximately 350 MB and supplies frozen predictions and evaluation records. The smoke run compares one complete main-study acquisition case with the frozen results. For the additional HHAR study use `python confirmation_hhar/reproduce.py --smoke`, or omit `--smoke` to replay its 45 cases. If you have already extracted the full Online Resource 1 archive, skip the download command. For all 354 cases run `python reproduce.py`. Quantitative plots can be rebuilt with `python visualization/rebuild_figures.py`; install Arial to match the distributed typography. Acquisition replay uses saved probabilities and does not require CUDA or classifier refitting.
+The artifact download is approximately 319 MB and supplies frozen predictions and evaluation records. The smoke run compares one complete main-study acquisition case with the frozen results. For the additional HHAR study use `python confirmation_hhar/reproduce.py --smoke`, or omit `--smoke` to replay its 45 cases. If you have already extracted the full Online Resource 1 archive, skip the download command. For all 354 cases run `python reproduce.py`. Quantitative plots can be rebuilt with `python visualization/rebuild_figures.py`; install Arial to match the distributed typography. Acquisition replay uses saved probabilities and does not require CUDA or classifier refitting.
 
 ## Repository map
 

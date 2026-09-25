@@ -2,13 +2,13 @@
 
 **Sequential reference preservation for label-efficient set-valued prediction**
 
-Research code and reproducibility materials accompanying a manuscript submitted to the International Journal of Approximate Reasoning.
+Research code and reproducibility materials accompanying the manuscript "Sequential reference preservation for label-efficient set-valued prediction," submitted to the International Journal of Approximate Reasoning. This public repository is a code, data and reproducibility archive, not a manuscript portal; the manuscript, title page and LaTeX source are handled through the journal submission system.
 
-**Current submission files:** [all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/ijar-submission-2026-09-24). Earlier review releases are historical records, not the current manuscript.
+**Current reproducibility archive:** [Online Resource 1 and all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/ijar-submission-2026-09-24). Earlier review releases are historical records.
 
 The revision/, revision5/, revision6/ and revision7/ directories contain different shared, locked or diagnostic components. They are not interchangeable manuscript copies; retain their paths for reproducibility. See [repository organization](docs/REPOSITORY_ORGANIZATION.md).
 
-[Manuscript](paper/manuscript.pdf) · [Title page and declarations](paper/Title_Page_and_Declarations.docx) · [Editable architecture](figures/Fig1_editable.pptx) · [Reproduction guide](docs/REPRODUCTION.md) · [Method and scope](docs/METHOD.md) · [Data and rights](docs/DATA.md)
+[Editable architecture](figures/Fig1_editable.pptx) · [Reproduction guide](docs/REPRODUCTION.md) · [Method and scope](docs/METHOD.md) · [Data and rights](docs/DATA.md)
 
 ![Architecture](figures/architecture_preview.png)
 
@@ -52,7 +52,6 @@ The artifact download is approximately 350 MB and supplies frozen predictions an
 
 | Path | Purpose |
 |---|---|
-| paper/ | Current manuscript PDF (IJAR submission); earlier LaTeX source retained in paper/latex/ |
 | figures/ | Editable architecture and current vector scientific plots |
 | visualization/ | Current figure regeneration scripts |
 | confirmation_hhar/ | Separately specified additional confirmation study |
@@ -66,4 +65,4 @@ The scientific directory names are retained so that imports and locked-file chec
 
 The guarantee is conditional on a fixed pool and uniform sampling without replacement. It preserves reference sets for every input and controls average inflation on the declared monitoring batch. It does not repair a poorly calibrated reference or establish new population coverage under arbitrary shift. Human annotation time was not measured.
 
-The repository was renamed from har-calibration-diversity to jrc-reference-emulation to reflect the current method. Historical study directories remain unchanged so that protocol hashes and imports stay valid. The LaTeX source in paper/latex/ corresponds to the earlier Pattern Analysis and Applications version; the IJAR LaTeX source will be added in revision.
+The repository was renamed from har-calibration-diversity to jrc-reference-emulation to reflect the current method. Historical study directories remain unchanged so that protocol hashes and imports stay valid. The repository intentionally contains no manuscript PDF or LaTeX source: those files are handled through the journal, while earlier versions remain available in past releases and git history.

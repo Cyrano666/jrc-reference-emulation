@@ -6,7 +6,7 @@ Use Python 3.12 and install the root requirements.txt. Download the checksum-ver
 
 Boundary tables do not require labels or a dataset. Run `python boundary_demo.py --pool-size 240` to construct the declared rank bounds and independently recompute their joint crossing probability. The functions are `calibrated_brackets` (boundary-table construction) and `crossing_probability` (joint absorbing recursion) in `revision6/horizon.py`. The sequence and stopping implementation is `revision6/sequential.py`.
 
-The artifact installer preserves newer paper/figure/documentation files in the checkout. Frozen numerical files and the locked implementation still must match the release; it stops on conflicting numerical evidence rather than overwriting it.
+The artifact installer preserves newer figure/documentation files in the checkout. Frozen numerical files and the locked implementation still must match the release; it stops on conflicting numerical evidence rather than overwriting it.
 
 - `python reproduce.py --smoke`: one complete case, compared with frozen rows.
 - `python reproduce.py`: all 354 cases and the aggregate tables.
@@ -36,8 +36,6 @@ Additional classifier dependencies are in revision6/requirements.txt. Training a
 | Figure 6 | revision6/results/predictions/uschad_0_0_MR.npz |
 | Figure 7 | revision6/summaries/model_summary.csv |
 | Ambiguous trial exclusion | revision6/schema_sensitivity/ |
-
-Compile paper/latex/manuscript.tex with pdfLaTeX three times. The unmodified official Springer Nature class and bibliography style are included. The manuscript is an author-review draft, not an accepted publication.
 
 ## Additional HHAR confirmation
 

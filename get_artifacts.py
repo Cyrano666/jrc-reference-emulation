@@ -2,11 +2,11 @@
 from pathlib import Path
 import argparse,hashlib,json,urllib.request,zipfile,re
 ROOT=Path(__file__).resolve().parent
-CHECKOUT_SETTINGS={'.gitignore','.gitattributes','CITATION.cff','article_metadata.json','ONLINE_RESOURCE_1.md'}
+CHECKOUT_SETTINGS={'.gitignore','.gitattributes','CITATION.cff','ONLINE_RESOURCE_1.md'}
 def presentation_file(path):
     # The release freezes numerical evidence. A later editorial revision may
     # legitimately change its paper, diagrams or instructions in the checkout.
-    return path in CHECKOUT_SETTINGS or path=='README.md' or path.startswith(('paper/','figures/','docs/'))
+    return path in CHECKOUT_SETTINGS or path=='README.md' or path.startswith(('figures/','docs/'))
 def digest(path):
     h=hashlib.sha256()
     with path.open('rb') as f:

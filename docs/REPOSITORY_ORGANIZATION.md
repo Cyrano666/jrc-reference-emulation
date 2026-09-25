@@ -1,7 +1,7 @@
-# Current candidate and history
+# Repository organization
 
-Use the submission-ready-2026-09-17 release for the current manuscript, author page, source and supplement. The release contains the current submission files; it is not an accepted journal article.
+This public repository is the code, data and reproducibility archive for the manuscript "Sequential reference preservation for label-efficient set-valued prediction," submitted to the International Journal of Approximate Reasoning. Use the **ijar-submission-2026-09-24** release for the current reproducibility archive (Online Resource 1). The repository intentionally contains no manuscript PDF, title page or LaTeX source; those files are handled through the journal submission system.
 
-The repository remains public, matching the manuscript code-availability statement and public HHAR protocol timestamp. Private access would require a different reviewer-access arrangement and revised manuscript links.
+The source directories `revision/`, `revision5/`, `revision6/` and `revision7/` contain shared code, model implementations, the locked acquisition procedure and diagnostics; deleting them would break imports or remove evidence. `confirmation_hhar/` holds the separately specified additional cohort study. Larger numerical files are distributed through the release as `ESM_1.zip`; `get_artifacts.py` downloads and verifies them against `artifacts.json`.
 
-Older published review tags are retained as an audit trail. They do not add duplicate working copies to the default branch. Historical manuscript PDFs inside immutable past release archives are superseded by the current candidate. The source directories revision/, revision5/, revision6/ and revision7/ contain shared code, model implementations, locked acquisition code and diagnostics; deleting them would break imports or remove evidence. Descriptions and the current release link make their roles explicit without rewriting experiment history.
+Older tags and releases are retained as an audit trail and remain available in git history; they are not the current archive.

@@ -1,10 +1,10 @@
 # Joint rank calibration for finite-pool reference emulation
 
-**Label-efficient emulation of conformal reference sets for wearable activity recognition**
+**Sequential reference preservation for label-efficient set-valued prediction**
 
-Research code and reproducibility materials accompanying an unpublished manuscript targeting Pattern Analysis and Applications.
+Research code and reproducibility materials accompanying a manuscript submitted to the International Journal of Approximate Reasoning.
 
-**Current submission files:** [all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/submission-ready-2026-09-17). Earlier review releases are historical records, not the current manuscript.
+**Current submission files:** [all current files](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/ijar-submission-2026-09-24). Earlier review releases are historical records, not the current manuscript.
 
 The revision/, revision5/, revision6/ and revision7/ directories contain different shared, locked or diagnostic components. They are not interchangeable manuscript copies; retain their paths for reproducibility. See [repository organization](docs/REPOSITORY_ORGANIZATION.md).
 
@@ -52,7 +52,7 @@ The artifact download is approximately 350 MB and supplies frozen predictions an
 
 | Path | Purpose |
 |---|---|
-| paper/ | Current review PDF and complete LaTeX source |
+| paper/ | Current manuscript PDF (IJAR submission); earlier LaTeX source retained in paper/latex/ |
 | figures/ | Editable architecture and current vector scientific plots |
 | visualization/ | Current figure regeneration scripts |
 | confirmation_hhar/ | Separately specified additional confirmation study |
@@ -66,4 +66,4 @@ The scientific directory names are retained so that imports and locked-file chec
 
 The guarantee is conditional on a fixed pool and uniform sampling without replacement. It preserves reference sets for every input and controls average inflation on the declared monitoring batch. It does not repair a poorly calibrated reference or establish new population coverage under arbitrary shift. Human annotation time was not measured.
 
-The repository was renamed from har-calibration-diversity to jrc-reference-emulation to reflect the current method. Historical study directories remain unchanged so that protocol hashes and imports stay valid. The editable manuscript is in paper/latex/; the release includes a flat LaTeX ZIP for journal upload.
+The repository was renamed from har-calibration-diversity to jrc-reference-emulation to reflect the current method. Historical study directories remain unchanged so that protocol hashes and imports stay valid. The LaTeX source in paper/latex/ corresponds to the earlier Pattern Analysis and Applications version; the IJAR LaTeX source will be added in revision.

@@ -2,6 +2,10 @@
 
 Reproducible finite-pool label-acquisition experiments: 354 classifier cases on seven wearable datasets and 45 additional HHAR cases. This repository contains experiment code, locked protocols, data provenance, frozen summaries and verification scripts.
 
+Current version: [reproducibility-2026-09-26](https://github.com/Cyrano666/jrc-reference-emulation/releases/tag/reproducibility-2026-09-26). Download `frozen_artifacts.zip` (318.6 MB) using the checksum-verifying installer below.
+
+The older `submission-ready-2026-09-17` data release is retained only to keep existing manuscript citations working; use the current release for new reproductions.
+
 ## Quick start
 
 Use Python 3.12:

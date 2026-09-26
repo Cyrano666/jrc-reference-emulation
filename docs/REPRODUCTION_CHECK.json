@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "date": "2026-09-24",
+  "date": "2026-09-26",
   "main_cases_available": 354,
   "hhar_cases_available": 45,
   "main_smoke": {
@@ -26,10 +26,12 @@
   ],
   "locked_implementation_unchanged": true,
   "numerical_archive": {
-    "version": "reproducibility-2026-09-24",
-    "url": "https://github.com/Cyrano666/jrc-reference-emulation/releases/download/reproducibility-2026-09-24/frozen_artifacts.zip",
+    "version": "reproducibility-2026-09-26",
+    "url": "https://github.com/Cyrano666/jrc-reference-emulation/releases/download/reproducibility-2026-09-26/frozen_artifacts.zip",
     "sha256": "7b0d2e2c17804ee91bb3323080ba9af87387d68aa00a8311af8595a842301da8",
     "bytes": 318570496
   },
-  "validation_scope": "Packaging and representative replay checks; no new experiment or classifier fit"
+  "validation_scope": "Packaging and representative replay checks; no new experiment or classifier fit",
+  "plots_rebuilt_on": "2026-09-24",
+  "protocol_lock_files_verified": 7
 }
